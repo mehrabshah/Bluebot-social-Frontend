@@ -1,0 +1,54 @@
+/* ContentBox.css */
+.content-box {
+    width: 915px;
+    height: 580px;
+    top: 150px;
+    left: 408px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    position: absolute;
+  }
+  
+  .header {
+    width: 915px;
+    height: 145px;
+    top: 150px;
+    left: 408px;
+    border-radius: 8px 8px 0px 0px;
+    background-color: #D6FFFF;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #37FDB2; /* Background color of the heading */
+  }
+  
+  .heading {
+    width: 839px;
+    height: 39px;
+    font-family: 'Vremena Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: white; /* Text color of the heading */
+  }
+  
+  /* ContentBox.css */
+.paragraph {
+    font-family: Vremena Grotesk;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    width: 845px;
+    height: 39px;
+    top: 267px;
+    left: 439px;
+    color: #000; /* Black text color */
+    position: absolute;
+  }
+  
