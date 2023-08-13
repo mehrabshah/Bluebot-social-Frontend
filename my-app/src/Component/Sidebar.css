@@ -1,14 +1,5 @@
 /* Sidebar.css */
-.sidebar {
-    width: 289px;
-    height: 100%;
-    top: 0;
-    background-color: #fff;
-    padding: 20px;
-    position: fixed;
-    overflow-y: scroll; /* Enable scrolling when the content exceeds the height */
-  }
-  
+
   .sidebar a {
     display: block;
     color: #333;
@@ -22,9 +13,6 @@
     background-color: #37fdb2; /* Change background color on hover */
   }
   
-  .icon {
-    margin-right: 10px;
-  }
   
   .separator-line {
     width: 100%;
@@ -33,13 +21,7 @@
     border-top: 1px solid #eee;
     margin: 10px 0;
   }
-  
-  .sidebar-heading {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
+ 
   .profile-icon {
     width: 40px;
     height: 34.69141387939453px;
@@ -70,3 +52,76 @@
     margin-bottom: 20px;
     color: #37fdb2;
   }
+
+  
+.icon {
+  color: black; /* Icon color */
+  font-size: 20px; /* Icon size */
+  margin-right: 10px;
+}
+
+.sidebar {
+  width: 289px;
+  height: 100%;
+  top: 0;
+  background-color: #fff;
+  padding: 20px;
+  position: fixed;
+  overflow-y: scroll; /* Enable scrolling when the content exceeds the height */
+}
+
+/* ... Your existing styles ... */
+
+.search-bar,
+.settings-field {
+position: relative;
+width: 248px; /* Adjusted width */
+height: 46px;
+border-radius: 8px;
+box-shadow: 0px 4px 4px 0px #00000040;
+margin-top: 10px; /* Adjust as needed */
+background-color: #FFFFFF;
+}
+
+.search-bar {
+padding: 9px 0 3px 58px;
+}
+
+.settings-field {
+padding: 9px 0 3px 58px;
+}
+
+.icon2 {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 15px;
+}
+
+.search-input {
+width: 180px; /* Adjusted width */
+height: 32px; /* Adjusted height */
+border: none;
+border-radius: 8px;
+padding-left: 40px; /* Adjust as needed */
+}
+
+
+.space-button {
+  width: 209px;
+  height: 30px;
+  margin-bottom: 60px; /* 2px top margin as requested */
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #F8F4F4;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  padding-left: 10px; /* Adjust as needed */
+}
+
+.space-button span {
+  font-size: 18px;
+  margin-right: 5px; /* Adjust the spacing between the plus sign and text */
+}
