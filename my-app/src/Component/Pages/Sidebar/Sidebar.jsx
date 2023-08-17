@@ -1,10 +1,6 @@
 import React from 'react';
 import { FaHome, FaChartBar, FaCalendarAlt, FaTasks, FaInbox, FaSearch, FaCog ,FaLibraryIcon} from 'react-icons/fa';
 import './Sidebar.css';
-import dasImage from './Images/das.png';
-import notiImage from './Images/noti.png';
-import proImage from './Images/pro.png';
-import settingImage from './Images/setting.png';
 
 const Sidebar = () => {
   return (
@@ -14,38 +10,38 @@ const Sidebar = () => {
         
         </div>
         <div className="sidebar-heading">
-          <img src={process.env.PUBLIC_URL + '/images/robot.png'} alt="Robot" className="robot-image" />
+          <img src= '/images/robot.png' alt="Robot" className="robot-image" />
           <h4>SOCIAL</h4>
         </div>
         <hr className="separator-line" />
 
         <div className="profile-icon">
-        <img src={process.env.PUBLIC_URL + '/images/User.png'}  />
+        <img src='/images/User.png' />
         </div>
         <div className="sidebar-items">
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/das.png'} className="iconImg" />
+            <img src='/images/das.png' className="iconImg" />
             Dashboard
           </a>
 
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/analysis.png'} className="iconImg" />
+            <img src='/images/analysis.png' className="iconImg" />
             Analytics
           </a>
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/calender.png'} className="iconImg" />
+            <img src='/images/calender.png' className="iconImg" />
             Calendar
           </a>
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/planning.png'} className="iconImg" />
+            <img src='/images/planning.png' className="iconImg" />
             Planning
           </a>
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/inbox.png'} className="iconImg" />
+            <img src='/images/inbox.png' className="iconImg" />
             Inbox
           </a>
           <a href="#">
-            <img src={process.env.PUBLIC_URL + '/images/Lib.png'} className="iconImg" />
+            <img src='/images/Lib.png' className="iconImg" />
             Dashboard
           </a>
         

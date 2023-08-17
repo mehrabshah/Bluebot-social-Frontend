@@ -16,14 +16,16 @@ const Workspace = () => {
       <div className="header-container">
         <button className="custom-button">add post</button>
         <div className="header1">
-          <img src={process.env.PUBLIC_URL + '/images/das.png'} alt="Dashboard" />
-          <img src={process.env.PUBLIC_URL + '/images/noti.png'} alt="Notifications" />
-          <img src={process.env.PUBLIC_URL + '/images/pro.png'} alt="Profile" />
-          <img src={process.env.PUBLIC_URL + '/images/setting.png'} alt="Settings" />
+          <img src={das.png} alt="Dashboard" />
+          <img src={noti.png} alt="Notifications" />
+          <img src={pro.png} alt="Profile" />
+          <img src={setting.png} alt="Settings" />
         </div>
       </div>
-   
+      <UperComponent/>
     
+      <WorkspaceContentBox/>
+       <Box/>
       <Sidebar />
 
     

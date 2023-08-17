@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 
-import FinalContentBox from './Component/Pages/Dashboard/CoverContentBox/FinalContentBox';
-import Workspace from './Component/Pages/Workplace/CoverBoxofWorkplace/Workspace';
 import Sidebar from './Component/Pages/Sidebar/Sidebar';
+import FinalContentBox from './Component/Pages/Dashboard/CoverContentBox/FinalContentBox';
+import ContentBox from './Component/Pages/Dashboard/ContentBox/ContentBox';
 
 function App() {
   return (
     <div>
-     <FinalContentBox/>
+  <FinalContentBox/>
     </div>
   );
 }
