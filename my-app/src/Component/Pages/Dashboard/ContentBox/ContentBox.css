@@ -51,11 +51,22 @@
   width: 95px;
   height: 96px;
 }
-
+.get-started-heading {
+  font-family: 'Vremena Grotesk', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #37FDB2;  /* Text color */
+  margin-bottom: 1px;
+  
+}
 .image-description {
   margin-top: 5px;
   color: #333;
 }
+
 
 @media (max-width: 767px) {
   .content-box {

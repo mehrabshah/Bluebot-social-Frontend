@@ -6,7 +6,15 @@ const ContentBox = () => {
     <div className="content-box">
       <div className="header">
         <h2 className="get-started-heading">Get Started</h2>
-        <p>Connect your social media Profile to publish post</p>
+        <p style={{
+  fontFamily: 'Vremena Grotesk, sans-serif',
+  fontSize: '18px',
+  fontWeight: 400,
+  lineHeight: '18px',
+  letterSpacing: '0.06em',
+  textAlign: 'center'
+  
+}}>Connect your social media Profile to publish post</p>
       </div>
 
       <div className="image-container">

@@ -79,7 +79,8 @@
     justify-content: center;
     margin: 6px auto; /* Center-align the buttons */
     position: relative;
-    right: 0px; /* Adjust right positioning */
+    right: 0px;
+    padding-left: 10px;  /* Adjust right positioning */
   }
   
   .plus-sign {
@@ -124,7 +125,8 @@
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 20px; /* Adjust margin for spacing between content and vertical-buttons */
+    margin-top: 20px;
+ /* Adjust margin for spacing between content and vertical-buttons */
     /* Adjust styles for vertical-button in mobile view */
   }
 }
