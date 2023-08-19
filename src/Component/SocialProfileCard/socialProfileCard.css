@@ -1,0 +1,19 @@
+.profile-card-header{
+    background: #C1FBE9;
+    width: 100%;
+    /* text-align: end; */
+    
+
+}
+/* .delete-button-social-profile{
+
+} */
+.profile-card-body{
+    background: #F3F3F3;
+}
+.profile-card-conatiner{
+    height: 229px;
+    width: 200px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+border-radius: 8px;
+}

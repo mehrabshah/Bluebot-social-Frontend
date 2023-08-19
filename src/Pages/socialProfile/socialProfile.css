@@ -1,0 +1,12 @@
+.profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add spacing between cards */
+    justify-content: center; /* Center content horizontally */
+  }
+  
+  /* If you want each row to contain 4 cards */
+  .social-profile-card {
+    width: calc(25% - 20px); /* Subtract gap width */
+    /* Other styles for card */
+  }

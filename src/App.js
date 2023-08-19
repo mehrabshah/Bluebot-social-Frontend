@@ -1,14 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-
-import Sidebar from './Component/Pages/Sidebar/Sidebar';
-import FinalContentBox from './Component/Pages/Dashboard/CoverContentBox/FinalContentBox';
-import ContentBox from './Component/Pages/Dashboard/ContentBox/ContentBox';
-
+import AppRoutes from "./Routes/AppRoutes";
 function App() {
   return (
     <div>
-  <FinalContentBox/>
+ <AppRoutes></AppRoutes>
     </div>
   );
 }

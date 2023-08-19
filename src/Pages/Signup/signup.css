@@ -1,0 +1,90 @@
+.logo-heading1{
+  font-family: 'Vremena Grotesk', sans-serif;
+font-size: 32px;
+font-weight: 500;
+line-height: 32px;
+letter-spacing: 0.06em;
+text-align: left;
+color: #37FDB2;
+
+}
+.main-container-login{
+  background: linear-gradient(180deg, #E8F0FE 0%, #FAFCFF 100%);
+  min-height: 100vh;
+}
+
+.login-container {
+     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.custom-buttonn{
+  background: linear-gradient(180deg, #91FBD3 0%, rgba(55, 253, 178, 0) 100%);
+  ; /* Button color */
+  box-shadow: 0px 4px 4px 0px #00000040;
+  padding: 5px 15px;
+
+  color: #000000; 
+}
+.settings-button-container{
+  background-color: white;
+  border-radius: 8px;
+  padding: 5px 15px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+.card{
+
+   padding: 30px;
+   border-radius: 10px;
+
+}
+.login-container .card{
+  background-color: #ffffff;
+}
+.login-container .card label,h2{
+   color:#000000;
+   font-size: 20px;   
+}
+  
+  
+ .login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .login-container label {
+    font-weight: bold;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 20px;
+    }
+  }
+  

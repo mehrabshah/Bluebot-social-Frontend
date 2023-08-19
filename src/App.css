@@ -1,7 +1,68 @@
 .App {
   text-align: center;
 }
+@font-face {
+  font-family: 'Vremena Grotesk';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Regular'), url('./font/VremenaGrotesk.woff') format('woff');
+  }
+  
 
+  @font-face {
+  font-family: 'Vremena Grotesk Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Bold'), url('./font/VremenaGroteskBold.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Bold Italic'), url('./font/VremenaGroteskBoldItalic.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Book';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Book'), url('./font/VremenaGroteskBook.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Book Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Book Italic'), url('./font/VremenaGroteskBookItalic.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Italic'), url('./font/VremenaGroteskItalic.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Medium'), url('./font/VremenaGroteskMedium.woff') format('woff');
+  }
+  
+
+  @font-face {
+  font-family: 'Vremena Grotesk Medium Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vremena Grotesk Medium Italic'), url('./font/VremenaGroteskMediumItalic.woff') format('woff');
+  }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
