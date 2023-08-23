@@ -11,18 +11,13 @@
   
 
   .line {
-    width: 260px;
-    height: 13px;
-    top: 337px;
+    width: 98%;
+    height: 10px;
     margin-top: 15px;
-    left: 1153px; /* Adjusted left position */
     border-radius: 11px;
-    background-color: grey; /* Line background color */
+    background-color: grey; 
   }
 
-  /* Box.css */
-
-/* ... Your existing styles ... */
 
 .connected-profiles {
     font-size: 14px;

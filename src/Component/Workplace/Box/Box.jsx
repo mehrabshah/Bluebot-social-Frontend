@@ -4,7 +4,7 @@ import './Box.css';
 const Box = () => {
   return (
     <div className="box-box w-100">
-      <div className="line"></div>
+      <div className="line w-100"></div>
       <div className='mt-md-5 mt-2'>
 
       <p className="connected-profiles">0/30 Connected Profiles</p>

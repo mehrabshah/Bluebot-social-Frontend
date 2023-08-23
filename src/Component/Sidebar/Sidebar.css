@@ -207,6 +207,12 @@ color:grey;
 /* ... Your existing styles ... */
 
 @media (max-width: 768px) {
+  .outlet-container{
+    margin-left: 0px;
+  }
+  .navbar-container-sidebar{
+    margin-left: 0px;
+  }
   .sidebar {
     width: 100%;
     position: relative;
