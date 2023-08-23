@@ -24,40 +24,40 @@ const Login = () => {
 	});
 
 	const handleSubmit = async (values) => {
-        window.location.href = "/dashboard";
-		// try {
-		// 	const response = await fetch("http://localhost:8000/auth/login", {
-		// 		method: "POST",
-		// 		headers: {
-		// 			"Content-Type": "application/json",
-		// 		},
-		// 		body: JSON.stringify({
-		// 			email: values.email,
-		// 			password: values.password,
-		// 		}),
-		// 	});
+
+		try {
+			const response = await fetch("http://localhost:8000/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: values.email,
+					password: values.password,
+				}),
+			});
 			
-		// 	if (!response.ok) {
-		// 		// Check for non-2xx HTTP response status
-		// 		const errorResponseData = await response.json();
-		// 		throw new Error(errorResponseData.message || "An error occurred");
-		// 	}
+			if (!response.ok) {
+				// Check for non-2xx HTTP response status
+				const errorResponseData = await response.json();
+				throw new Error(errorResponseData.message || "An error occurred");
+			}
 			
-		// 	const responseData = await response.json();
-		// 	console.log(responseData);
-		// 	// Store token and other information in local storage
-		// 	localStorage.setItem("token", responseData.token);
-		// 	localStorage.setItem("role", responseData.role);
-		// 	localStorage.setItem("email", responseData.email);
-		// 	localStorage.setItem("userName", responseData.username);
-		// 	localStorage.setItem("UserId", responseData.UserId);
-		// 	window.alert("Logged In Successfully");
-	
-		// 	// Redirect to dashboard or any other protected route
-		// } catch (error) {
-		// 	// Handle login error
-		// 	window.alert(error.message || "An error occurred during login");
-		// }
+			const responseData = await response.json();
+			console.log(responseData);
+			// Store token and other information in local storage
+			localStorage.setItem("token", responseData.token);
+			localStorage.setItem("role", responseData.role);
+			localStorage.setItem("email", responseData.email);
+			localStorage.setItem("userName", responseData.username);
+			localStorage.setItem("UserId", responseData.UserId);
+			window.alert("Logged In Successfully");
+	        window.location.href = "/dashboard";
+			// Redirect to dashboard or any other protected route
+		} catch (error) {
+			// Handle login error
+			window.alert(error.message || "An error occurred during login");
+		}
 	};
 	
 

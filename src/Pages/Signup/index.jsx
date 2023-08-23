@@ -9,6 +9,9 @@ const SignUp = () => {
 	const initialValues = {
 		email: "",
 		password: "",
+		gender: "", // Added gender field
+		firstName: "", // Added firstName field
+		lastName: "", // Added lastName field
 	};
 
 	const [togglePassword, setTogglePassword] = useState(false);
@@ -21,42 +24,20 @@ const SignUp = () => {
 				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 				"Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
 			),
+			gender: Yup.string().required("Gender is required"), // Added gender validation
+		firstName: Yup.string().required("First Name is required"), // Added firstName validation
+		lastName: Yup.string().required("Last Name is required"), // Added lastName validation
 	});
 
 	const handleSubmit = async (values) => {
 		try {
-			const response = await fetch("http://localhost:8000/auth/login", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					email: values.email,
-					password: values.password,
-				}),
-			});
+			const response = await axios.post("http://localhost:8000/auth/signup", values);
 			
-			if (!response.ok) {
-				// Check for non-2xx HTTP response status
-				const errorResponseData = await response.json();
-				throw new Error(errorResponseData.message || "An error occurred");
-			}
-			
-			const responseData = await response.json();
-			console.log(responseData);
-			// Store token and other information in local storage
-			localStorage.setItem("token", responseData.token);
-			localStorage.setItem("role", responseData.role);
-			localStorage.setItem("email", responseData.email);
-			localStorage.setItem("userName", responseData.username);
-			localStorage.setItem("UserId", responseData.UserId);
-			window.alert("Logged In Successfully");
-	
-			// Redirect to dashboard or any other protected route
-			window.location.href = "/dashboard";
+			window.alert("Successfully Signed Up");
+			window.location.href = "/login";
 		} catch (error) {
 			// Handle login error
-			window.alert(error.message || "An error occurred during login");
+			window.alert(error.message || "An error occurred during SignUp");
 		}
 	};
 	
@@ -90,18 +71,6 @@ const SignUp = () => {
 							onSubmit={handleSubmit}
                             >
 							<Form>
-								<div className="form-group">
-									<label htmlFor="username ">User Name</label>
-									<Field
-										type="username"
-										className="form-control mt-2"
-										placeholder="Enter User Name"
-										id="username"
-										name="username"
-										required
-									/>
-									<ErrorMessage name="username" component="div" className="alert text-danger" />
-								</div>
 								<div className="form-group">
 									<label htmlFor="email ">Email</label>
 									<Field
@@ -155,6 +124,43 @@ const SignUp = () => {
 									</div>
 									<ErrorMessage name="password" component="div" className="alert text-danger" />
 								</div>
+					<div className="form-group">
+						<label htmlFor="gender">Gender</label>
+						<Field
+							as="select"
+							className="form-control mt-2"
+							id="gender"
+							name="gender"
+						>
+							<option value="">Select Gender</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Other">Other</option>
+						</Field>
+						<ErrorMessage name="gender" component="div" className="alert text-danger" />
+					</div>
+					<div className="form-group">
+						<label htmlFor="firstName">First Name</label>
+						<Field
+							type="text"
+							className="form-control mt-2"
+							placeholder="Enter First Name"
+							id="firstName"
+							name="firstName"
+						/>
+						<ErrorMessage name="firstName" component="div" className="alert text-danger" />
+					</div>
+					<div className="form-group">
+						<label htmlFor="lastName">Last Name</label>
+						<Field
+							type="text"
+							className="form-control mt-2"
+							placeholder="Enter Last Name"
+							id="lastName"
+							name="lastName"
+						/>
+						<ErrorMessage name="lastName" component="div" className="alert text-danger" />
+					</div>
 								<button type="submit" to="/sidebar" className="btn mt-5 custom-buttonn">
 									Sign Up
 								</button>
