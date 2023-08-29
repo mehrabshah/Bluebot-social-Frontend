@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { render } from "react-dom";
 
 import TUICalendar from "@toast-ui/react-calendar";
@@ -11,6 +11,7 @@ import "tui-time-picker/dist/tui-time-picker.css";
 
 const start = new Date();
 const end = new Date(new Date().setMinutes(start.getMinutes() + 30));
+
 const schedules = [
   {
     calendarId: "1",
