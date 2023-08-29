@@ -1,0 +1,135 @@
+
+.container2 {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E8F0FE 99.61%);
+}
+.navbar-custom-buttons{
+  align-self: flex-end;
+  /* margin-right: 40px;
+  margin-top: 40px; */
+}
+.create-workplace-container{
+  align-self: flex-start;
+
+}
+.content-container2 {
+  margin-top: -100px; /* Move ContentBox upward by 20px (adjust as needed) */
+}
+.header-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px; /* Add some padding for spacing */
+}
+  
+  .custom-button {
+    width: 138px;
+    height: 37px;
+    border-radius: 8px;
+     background: linear-gradient(180deg, #91FBD3 0%, rgba(55, 253, 178, 0) 100%);
+    ; /* Button color */
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #000000; /* Text color */
+    font-size: 14px;
+     margin-top: 30px;
+    margin-left: 850px; /* Adding right margin */
+  }
+  
+  .header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 222px;
+    height: 57px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background-color: white; /* You can change the background color as needed */
+    padding: 0 10px; /* Adjusted padding to fit images */
+    margin-top: 10px;
+    margin-right: 100px;
+    gap:0px;
+     
+  }
+  
+  .header1 img {
+    width: 30px; /* Adjusted image width for better fit */
+    height: 30px; /* Adjusted image height for better fit */
+    margin-right: 2px; /* Adding spacing between images */
+  
+  }
+  
+  
+.content-container {
+    margin-top: -100px; /* Move ContentBox upward by 20px (adjust as needed) */
+  }
+  
+  /* Rest of your styles */
+
+
+  .vertical-button {
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    color: #000000;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px auto; /* Center-align the buttons */
+    position: relative;
+    right: 0px; /* Adjust right positioning */
+  }
+  
+  .plus-sign { /* Adjust as needed */
+    color: #000000; /* Plus sign color */
+    font-size: 25px; /* Plus sign size */
+  }
+
+ /* Media query for mobile view */
+@media (max-width: 768px) {
+  .container2 {
+    width: 100%;
+    height: auto;
+  }
+
+  .header-container2 {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .content-container2 {
+    margin-top: 20px; /* Adjust margin for spacing between header and content */
+  }
+
+  .header1 {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+    margin-top: 20px; /* Adjust margin for spacing between content and header1 */
+  }
+
+  .custom-button {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    /* Adjust styles for custom-button in mobile view */
+  }
+
+  .vertical-button {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+ /* Adjust margin for spacing between content and vertical-buttons */
+    /* Adjust styles for vertical-button in mobile view */
+  }
+}

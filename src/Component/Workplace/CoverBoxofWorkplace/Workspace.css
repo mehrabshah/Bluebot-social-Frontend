@@ -1,0 +1,98 @@
+/* FinalContentBox.css */
+
+.workspace-container {
+    background: linear-gradient(180deg, #FFFFFF 0%, #E8F0FE 99.61%);
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .change-account{
+    color: #707070;
+    font-size: 12px;
+
+  }
+  
+.select-container {
+  margin: 10px 0;
+}
+.change-account-container{
+  align-self: flex-start;
+}
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+  .custom-button {
+    width: 138px;
+    height: 37px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #91FBD3 0%, rgba(55, 253, 178, 0) 100%);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 14px;
+  }
+  
+  .header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 222px;
+    height: 57px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background-color: white;
+    padding: 0 10px;
+    margin-top: 25px;
+    margin-right: 20px;
+    gap: 0;
+  }
+  
+  .header1 img {
+    width: 30px;
+    height: 30px;
+    margin-right: 2px;
+  }
+  
+  .content-container {
+    flex: 1; /* Expand content to fill remaining space */
+    display: flex;
+  }
+  
+  /* Rest of your existing styles... */
+  
+  /* Media query for mobile view */
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+    }
+  
+    .custom-button {
+      margin-top: 10px;
+    }
+  
+    .header1 {
+      margin-top: 10px;
+      margin-right: 0;
+    }
+  
+    /* Adjust other styles as needed for mobile view */
+  }
+  
