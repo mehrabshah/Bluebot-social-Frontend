@@ -2,6 +2,38 @@ import React, { useState } from "react";
 import "./SchedulePostModal.css";
 export default function SchedulePostModal() {
   const [image, setImage] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("1");
+
+  const renderFieldsAndButtons = () => {
+    if (selectedOption === "1") {
+      return (
+        <div className="selected-fields-container">
+          <input type="text" placeholder="Input Field 1" />
+          <input type="text" placeholder="Input Field 2" />
+          <button>Button 1</button>
+          <button>Button 2</button>
+        </div>
+      );
+    } else if (selectedOption === "2") {
+      return (
+        <div className="selected-fields-container">
+          <input type="text" placeholder="Input Field 3" />
+          <input type="text" placeholder="Input Field 4" />
+          <button>Button 3</button>
+          <button>Button 4</button>
+        </div>
+      );
+    } else if (selectedOption === "3") {
+      return (
+        <div className="selected-fields-container">
+          <input type="text" placeholder="Input Field 5" />
+          <input type="text" placeholder="Input Field 6" />
+          <button>Button 5</button>
+          <button>Button 6</button>
+        </div>
+      );
+    }
+  };
   return (
     <div className="modal-post">
       <div
@@ -35,19 +67,21 @@ export default function SchedulePostModal() {
                 <select
                   class="form-select form-select-lg mb-3"
                   aria-label="Large select example"
+                  value={selectedOption}
+                  onChange={(e) => setSelectedOption(e.target.value)}
                 >
                   <option selected>Open this select menu</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
-                
+                {renderFieldsAndButtons()}
 
 
               </div>
             </div>
             <div className="modal-body">
-              <div className="row">
+              <div className="row d-flex algn-items-center">
                 <div className="col-6 ">
                   <form
                     className="add-post  d-flex justify-content-center flex-column  align-items-center"
@@ -73,12 +107,17 @@ export default function SchedulePostModal() {
                 </div>
                 <div className="col-6">
                   <div className="preview-wrapper">
-                    <h1 className="Preview-heading">Preview</h1>
+                    {image?<></>:<h1 className="Preview-heading">Preview</h1>}
+                    {image && <img src={image} alt="Preview" className="preview-image img-fluid" />}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer"></div>
+            <div className="modal-footer">
+  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+    Close
+  </button>
+</div>
           </div>
         </div>
       </div>

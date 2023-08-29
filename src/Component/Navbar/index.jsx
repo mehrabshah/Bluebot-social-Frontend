@@ -4,9 +4,18 @@ import SchedulePostModal from "../Modals/schedulePost/SchedulePostModal";
 
 const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // Add state to track modal open/close
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -17,11 +26,13 @@ const Navbar = () => {
           class="btn custom-buttonn me-2"
           data-bs-toggle="modal"
           data-bs-target=".bd-example-modal-lg"
+          onClick={handleOpenModal}
         >
           Add Post
         </button>
 
-        <SchedulePostModal />
+        <SchedulePostModal onClose={handleCloseModal} isOpen={isModalOpen} />
+
 
         <div className="d-flex settings-button-container">
           <img className="me-2" src="/images/das.png" alt="Dashboard" />
