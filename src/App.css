@@ -8,7 +8,10 @@
   src: local('Vremena Grotesk Regular'), url('./font/VremenaGrotesk.woff') format('woff');
   }
   
-
+  .content-image {
+    width: 76px;
+    border-radius: 50px;
+  }
   @font-face {
   font-family: 'Vremena Grotesk Bold';
   font-style: normal;
