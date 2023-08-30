@@ -8,12 +8,22 @@ export default function SchedulePostModal() {
   const [date, setDate] = useState(new Date());
   const [inputOne, setInputOne] = useState();
   const [inputTwo, setInputTwo] = useState();
-  const [payloadImage, setPayloadImage] = useState();
   const userId = localStorage.getItem("UserId");
 
   const addPost = async (payload) => {
     try{
-      const res = await axios.post("http://localhost:8000/post/createPost", payload);
+      const formData = new FormData();
+      formData.append('type', payload.type);
+      formData.append('text1', payload.text1);
+      formData.append('text2', payload.text2);
+      formData.append('date', payload.date);
+      formData.append('img', image);
+      formData.append('user', payload.user);
+      const res = await axios.post("http://localhost:8000/post/createPost", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       if(res){
         console.log(res);
       }
@@ -22,30 +32,7 @@ export default function SchedulePostModal() {
       console.log(e);
     }
   }
-  const convertImage = () => {
-    if(image){
-      const blobUrl = image;
-      fetch(blobUrl)
-        .then(response => response.blob())
-        .then(blobData => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => {
-              const base64Data = reader.result.split(',')[1]; 
-              resolve(base64Data);
-            };
-            reader.onerror = error => {
-              reject(error);
-            };
-            reader.readAsDataURL(blobData);
-              });
-            })
-            .then(base64Data => {
-              setPayloadImage(base64Data)
-            });
 
-    }
-  }
 
   const handleInputChangeOne = (value) => {
     setInputOne(value);
@@ -55,7 +42,6 @@ export default function SchedulePostModal() {
     setInputTwo(value);
   }
 
-  convertImage()
 
   const handleSubmit = () => {
     const payload = {
@@ -63,10 +49,7 @@ export default function SchedulePostModal() {
         text1: inputOne,
         text2: inputTwo,
         date: date,
-        img: {
-          data: payloadImage,
-          contentType: "image/jpeg"
-        },
+        img: image,
         user: userId
     }
     addPost(payload)
