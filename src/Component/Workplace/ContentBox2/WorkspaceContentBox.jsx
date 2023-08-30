@@ -17,7 +17,13 @@ class WorkspaceContentBox extends Component {
     pageId : '',
     text : '',
     file : 'null',
-    accounts : []
+    accounts : [],
+    twitterToken : '',
+    consumerKey : '',
+    consumerSecret : '',
+    isTwitter : false,
+    twitterText : '',
+    tweet : false
   };
 
 
@@ -69,30 +75,51 @@ class WorkspaceContentBox extends Component {
 
     //this.fetchData();
 
+    axios.get(`http://localhost:8000/auth/twitter/getAccessToken/${this.state.isAuthenticatedUser}`)
+      .then(response => {
+        const accessTokenFromServer = response.data.twitterData.accessToken;
+        const consumerKey = response.data.twitterData.consumerKey;
+        const consumerSecret = response.data.twitterData.consumerSecret;
+        console.log(response.data.twitterData);
+        this.setState({twitterToken : accessTokenFromServer, consumerKey : consumerKey, consumerSecret : consumerSecret});
+        
+      })
+      .catch(error => {
+        console.error('Error fetching access token:', error);
+      });
+
    
   }
 
 
+  handleTweetSubmit = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/auth/twitter/create-tweet', { text: this.state.twitterText , tokenTwitter : this.state.twitterToken });
 
-//  // const [redirectUrl, setRedirectUrl] = useState('');
+      const data = await response.json();
+      console.log('Tweet created:', data);
+    } catch (error) {
+      console.error('Error creating tweet:', error);
+    }
+  };
 
-//   initiateAuthTwitter = async () => {
-//     try {
-//       const response = await axios.get('http://localhost:8000/auth/twitter/get-token');
-//       this.setState({ redirectUrl: response.data.redirectUrl});
-//     } catch (error) {
-//       console.error('Error initiating authentication:', error);
-//     }
-//   };
 
   initiateAuthTwitter = async () => {
+  
     try {
-      const response = await fetch('http://localhost:8000/auth/twitter/request-token');
-      const data = await response.json();
-      window.location.href = `https://api.twitter.com/oauth/authenticate?oauth_token=${data.oauth_token}`;
+      const apiResponse = await axios.post('http://localhost:8000/auth/twitter/request-token', {
+        userId : localStorage.getItem("UserId"),
+        consumerKey : this.state.consumerKey,
+        consumerSecret : this.state.consumerSecret
+      });
+      this.setState({isTwitter : false, twitterToken : apiResponse.data.access_token});
+      console.log(apiResponse.data);
+
     } catch (error) {
-      console.error('Error authenticating with Twitter:', error);
+      console.error('Error:', error);
+      // Handle error cases
     }
+    
   };
 
   postData = async () => {
@@ -216,9 +243,48 @@ class WorkspaceContentBox extends Component {
             <p className="image-description">instragram</p>
           </div>
 
-          <div className="image-tile"  onClick={this.initiateAuthTwitter}>
-            <img src='/images/image7.png' alt="Image 2" className="content-image img-fluid" />
+          <div className="image-tile"  >
+            <img src='/images/image7.png' alt="Image 2" className="content-image img-fluid" onClick={(e) => this.setState({isTwitter : true})} />
             <p className="image-description">Twiter</p>
+            {this.state.twitterToken && (
+              <>
+               <button onClick={(e) => this.setState({tweet : true})}>Post Now</button>
+
+               {this.state.tweet && (
+                  <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '20px', backgroundColor: 'white', border: '1px solid black', zIndex: 1000 }}>
+                  
+                  <input type="text" placeholder="Enter text" onChange={(e) => this.setState({twitterText : e.target.value})} />
+                  {/* <input type="file" onChange={(e) => this.setState({file : e.target.files[0]})} /> */}
+                  <button onClick={this.handleTweetSubmit}>Post</button>
+                    
+         
+                 </div>
+               
+               )}
+               </>
+            )}
+            {this.state.isTwitter && (
+              <>
+             
+                 <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '20px', backgroundColor: 'white', border: '1px solid black', zIndex: 1000 }}>
+        <div className="dialog-box">
+          <input
+            type="text"
+            placeholder="API key"
+            value={this.state.consumerKey}
+            onChange={(e) => this.setState({consumerKey : e.target.value})}
+          />
+          <input
+            type="text"
+            placeholder="API secret Key"
+            value={this.state.consumerSecret}
+            onChange={(e) => this.setState({consumerSecret : e.target.value})}
+          />
+          <button onClick={this.initiateAuthTwitter}>Log In Now</button>
+        </div>
+        </div>
+        </>
+      )}
           </div>
 
           {/* { this.initiateAuthTwitter && <a href={this.state.redirectUrl}>Click here to authorize</a>} */}
