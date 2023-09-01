@@ -1,7 +1,36 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React,{useEffect,useState} from 'react';
 import './ContentBox.css';
-
+import axios from 'axios';
 const ContentBox = () => {
+  const [togglePassword, setTogglePassword] = useState(false);
+  const userId=localStorage.getItem('UserId');
+   const clientId = '86zepiufo3et2u'; 
+  const redirectUri = 'http://localhost:3000/dashboard'; 
+  const handleLogin = () => {
+    window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`;
+  };
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const code = urlSearchParams?.get('code');
+  useEffect(() => {
+    const exchangeCodeForAccessToken = async () => {
+      const requestBody = {
+        code: code,
+        userId: userId
+      }
+      try {
+        const response = await axios.post('http://localhost:8000/auth/linkedin/create-linkedin-user', requestBody);
+        const res = response?.data;
+        console.log(res)
+      } catch (error) {
+        console.error('Error exchanging code for access token:', error);
+      }
+    };
+    if (code) {
+      exchangeCodeForAccessToken();
+    }
+    // eslint-disable-next-line
+  }, []);
   return (
     <div className="content-box">
       <div className="header-content-box p-md-4">
@@ -40,11 +69,11 @@ const ContentBox = () => {
           <p className="image-description">instragram</p>
         </div>
 
-        <div className="image-tile">
+        <div className="image-tile" onClick={()=>setTogglePassword(!togglePassword)}>
           <img src='/images/image7.png' alt="Image 2" className="content-image" />
           <p className="image-description">Twiter</p>
         </div>
-        <div className="image-tile">
+        <div className="image-tile" onClick={handleLogin}>
           <img src='/images/image7.png' alt="Image 2" className="content-image" />
           <p className="image-description">LinkedIn</p>
         </div>
