@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './SchedulePostModal.css'
 import axios from 'axios'
+import BASE_URL from '../../../services/api'
 
 export default function SchedulePostModal() {
   const [image, setImage] = useState(null)
   const [selectedOption, setSelectedOption] = useState('1')
   const [date, setDate] = useState(new Date())
+  const [selectedLogo, setSelectedLogo] = useState(null);
   const [inputOne, setInputOne] = useState()
   const [inputTwo, setInputTwo] = useState()
   const userId = localStorage.getItem('UserId')
@@ -19,7 +21,7 @@ export default function SchedulePostModal() {
       formData.append('date', payload.date)
       formData.append('img', image)
       formData.append('user', payload.user)
-      const res = await axios.post('http://localhost:8000/post/createPost', formData, {
+      const res = await axios.post(`${BASE_URL}/post/createPost`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -31,6 +33,11 @@ export default function SchedulePostModal() {
       console.log(e)
     }
   }
+  const handleLogoClick = (value) => {
+    // Update the selected logo and "type" in FormData
+    setSelectedLogo(value);
+    setSelectedOption(value);
+  };
 
   const handleInputChangeOne = value => {
     setInputOne(value)
@@ -52,44 +59,41 @@ export default function SchedulePostModal() {
     addPost(payload)
     console.log(payload)
   }
-
-  const renderFieldsAndButtons = () => {
-    if (selectedOption === '1') {
-      return (
-        <div className="selected-fields-container">
-          <input type="text" placeholder="Input Field 1" value={inputOne} onChange={e => handleInputChangeOne(e.target.value)} />
-          <input type="text" placeholder="Input Field 2" value={inputTwo} onChange={e => handleInputChangeTwo(e.target.value)} />
-        </div>
-      )
-    } else if (selectedOption === '2') {
-      return (
-        <div className="selected-fields-container">
-          <input type="text" placeholder="Input Field 3" value={inputOne} onChange={e => handleInputChangeOne(e.target.value)} />
-          <input type="text" placeholder="Input Field 4" value={inputTwo} onChange={e => handleInputChangeTwo(e.target.value)} />
-        </div>
-      )
-    } else if (selectedOption === '3') {
-      return (
-        <div className="selected-fields-container">
-          <input type="text" placeholder="Input Field 5" value={inputOne} onChange={e => handleInputChangeOne(e.target.value)} />
-          <input type="text" placeholder="Input Field 6" value={inputTwo} onChange={e => handleInputChangeTwo(e.target.value)} />
-        </div>
-      )
-    }
-  }
   console.log(selectedOption)
   return (
-    <div className="modal-post">
-      <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div className="modal-post" >
+      <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style={{ backgroundColor: 'white', width: '80%' }}>
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="post-heading">Create your post</h1>
-              <div className="d-flex justify-content-between mt-3">
+              <div className="image-option-container d-flex justify-content-between mt-3 mb-md-3 mb-1">
                 <div className="flex-item">
-                  <img src="./images/facebook.png" className="img-fluid ms-2" alt="fbimg" />
-                  <img src="./images/instagram.png" className="img-fluid ms-2" alt="instaimg" />
-                  <img src="./images/pinterest.png" className="img-fluid ms-2" alt="pinterestimg" />
+                <img
+                    src="./images/facebook.png"
+                    className={`img-fluid ms-2 ${selectedLogo === 'FACEBOOK' ? 'selected' : ''}`}
+                    alt="fbimg"
+                    onClick={() => handleLogoClick('FACEBOOK')}
+                  />
+                  <img
+                    src="./images/instagram.png"
+                    className={`img-fluid ms-2 ${selectedLogo === 'INSTAGRAM' ? 'selected' : ''}`}
+                    alt="instaimg"
+                    onClick={() => handleLogoClick('INSTAGRAM')}
+                  />
+                  <img
+                    src="./images/pinterest.png"
+                    className={`img-fluid ms-2 ${selectedLogo === 'PINTEREST' ? 'selected' : ''}`}
+                    alt="pinterestimg"
+                    onClick={() => handleLogoClick('PINTEREST')}
+                  />
+                  <img
+                    src="./images/image8.png"
+                    className={`img-fluid ms-2 ${selectedLogo === 'LINKEDIN' ? 'selected' : ''}`}
+                    alt="pinterestimg"
+                    onClick={() => handleLogoClick('LINKEDIN')}
+                  />
+
                 </div>
               </div>
               <div className="flex-item">
@@ -105,10 +109,12 @@ export default function SchedulePostModal() {
                   <option selected>Open this select menu</option>
                   <option value="image">image</option>
                   <option value="video">video</option>
-                  {/* <option value="3">Three</option> */}
                 </select>
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                  {renderFieldsAndButtons()}
+                <div className='d-flex flex-wrap' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <div className="selected-fields-container d-flex flex-wrap">
+          <input type="text" placeholder="Add Post Text Here" value={inputOne} onChange={e => handleInputChangeOne(e.target.value)} />
+          <input type="text" placeholder="Add Tags Here" className='ms-md-4 ms-1' value={inputTwo} onChange={e => handleInputChangeTwo(e.target.value)} />
+        </div>
                   <input type="datetime-local" value={date} onChange={e => setDate(e.target.value)} />
                 </div>
               </div>

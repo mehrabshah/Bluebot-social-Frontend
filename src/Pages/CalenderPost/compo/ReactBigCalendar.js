@@ -4,6 +4,7 @@ import moment from "moment";
 import events from "./events";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import axios from "axios";
+import BASE_URL from "../../../services/api";
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
@@ -15,7 +16,7 @@ export default function ReactBigCalendar() {
   const [posts, setPosts] = useState([]);
     
   const getAllPosts = async () => {
-    const res = await axios.get(`http://localhost:8000/post/getAllPost/${user}`);
+    const res = await axios.get(`${BASE_URL}/post/getAllPost/${user}`);
     if(res){
       setPosts(res.data);
     }  

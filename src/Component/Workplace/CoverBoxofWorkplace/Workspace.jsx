@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ContentBox from '../../Dashboard/ContentBox/ContentBox';
 import Sidebar from '../../Sidebar/Sidebar';
 import {WorkspaceContentBox} from '../ContentBox2/WorkspaceContentBox';
 import Box from '../Box/Box';
 import UperComponent from '../Header/UperComponent';
 import './Workspace.css'
+import ContentBox from '../../Dashboard/ContentBox/ContentBox';
 const Workspace = () => {
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -16,7 +16,8 @@ const Workspace = () => {
       <UperComponent/>
    <div className='row p-5'>
     <div className='col-md-8'>
-      <WorkspaceContentBox/>
+      {/* <WorkspaceContentBox/> */}
+      <ContentBox/>
     </div>
     <div className='col-md-4'>
        <Box/>

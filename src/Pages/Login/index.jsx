@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import './login.css'
+import BASE_URL from '../../services/api'
 
 const Login = () => {
   const initialValues = {
@@ -19,7 +20,7 @@ const Login = () => {
 
   const handleSubmit = async values => {
     try {
-      const response = await fetch('http://localhost:8000/auth/login', {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

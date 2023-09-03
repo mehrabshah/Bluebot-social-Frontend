@@ -1,0 +1,15 @@
+.main-privacy-policy{
+    background: linear-gradient(180deg, #E8F0FE 0%, #FAFCFF 100%);
+  }
+.inner-privacy-policy{
+    min-height: 100vh;
+    align-items: center;
+  }
+  .pagination button{
+    border: none;
+    padding: 10px;
+  }
+  .main-privacy-policy h1{
+    color: #37FDB2;
+
+  }

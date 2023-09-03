@@ -218,7 +218,10 @@ color:grey;
     position: relative;
     padding: 10px;
   }
-
+  .modal-post .modal {
+    top: 15px; 
+    left: 15px;
+}
   .profile-icon {
     top: 10px;
     left: 10px;

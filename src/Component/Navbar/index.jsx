@@ -21,7 +21,7 @@ const Navbar = () => {
   }
   // const arr = ['Youtube', 'Instagram', 'facebook']
   return (
-    <div className="d-flex align-items-center flex-column">
+    <div className="d-flex align-items-center mb-md-2 flex-column">
       <div className="d-flex align-items-center navbar-custom-buttons me-md-5 me-2 mt-md-5 mt-2">
         <button type="button" class="btn custom-buttonn me-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onClick={handleOpenModal}>
           Add Post

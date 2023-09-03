@@ -4,6 +4,9 @@
   min-height: 100vh;
   background: linear-gradient(180deg, #FFFFFF 0%, #E8F0FE 99.61%);
 }
+.container2 a{
+  text-decoration: none;
+}
 .navbar-custom-buttons{
   align-self: flex-end;
   /* margin-right: 40px;

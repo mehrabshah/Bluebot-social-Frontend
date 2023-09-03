@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
+import BASE_URL from "../../services/api";
 
 const SignUp = () => {
 	const initialValues = {
@@ -31,7 +32,7 @@ const SignUp = () => {
 
 	const handleSubmit = async (values) => {
 		try {
-			const response = await axios.post("http://localhost:8000/auth/signup", values);
+			const response = await axios.post(`${BASE_URL}/auth/signup`, values);
 			
 			window.alert("Successfully Signed Up");
 			window.location.href = "/login";

@@ -6,8 +6,8 @@
   height: unset;
   max-width: unset;
   position: fixed;
-    top: 75px;
-    left: 203px;
+    top: 25px;
+    left: 180px;
 }
 .preview-wrapper {
   height: 234px;
@@ -17,6 +17,9 @@
   background-color: #F6F5F5;
   border-radius: 8px;
   overflow: scroll;
+}
+.image-option-container img {
+  height: 40px;
 }
 .selected-fields-container{
   display: flex;
@@ -37,6 +40,13 @@
 .modal-post .modal-content{
    border: 0px;
 }
+/* CSS for highlighting selected logo */
+.img-fluid.selected {
+  border: 2px solid #007bff; /* Add a blue border to the selected logo */
+  border-radius: 5px; /* Add rounded corners to the border */
+  padding: 3px; /* Add some padding to make it more visible */
+}
+
 .modal-post .modal-header {
    border: none;
 }
@@ -91,4 +101,10 @@
   display: block;
    
 
+}
+@media (max-width: 768px) {
+  .modal-post .modal {
+    top: 15px; 
+    left: 15px;
+}
 }

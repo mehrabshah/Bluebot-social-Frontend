@@ -2,6 +2,7 @@ import React from 'react'
 import './ContentBox.css'
 import axios from 'axios'
 import { useEffect } from 'react'
+import BASE_URL from '../../../services/api'
 const ContentBox = () => {
   const userId = localStorage.getItem('UserId')
   const clientId = '86zepiufo3et2u'
@@ -11,6 +12,7 @@ const ContentBox = () => {
   }
   const urlSearchParams = new URLSearchParams(window.location.search)
   const code = urlSearchParams?.get('code')
+  console.log({code});
   useEffect(() => {
     if (code) {
       const exchangeCodeForAccessToken = async () => {
@@ -19,12 +21,9 @@ const ContentBox = () => {
           userId: userId,
         }
         try {
-          const response = await axios.post('http://localhost:8000/auth/linkedin/create-linkedin-user', requestBody)
+          const response = await axios.post(`${BASE_URL}/auth/linkedin/create-linkedin-user`, requestBody)
           const res = response?.data
           console.log(res)
-          // const decoded = jwtDecode(res.data?.tokenId);
-          // setLinkedinId(decoded.sub);
-          // setAccessToken(res.data?.accessToken);
         } catch (error) {
           console.error('Error exchanging code for access token:', error)
         }
@@ -41,7 +40,7 @@ const ContentBox = () => {
         <p>Connect your social media Profile to publish post</p>
       </div>
 
-      <div className="image-container p-md-4">
+      <div className="image-container p-md-4 align-items-center">
         <div className="image-tile">
           <img src="./images/image1.png" alt="Image1" className="content-image" />
           <p className="image-description">Facebook</p>
@@ -77,7 +76,7 @@ const ContentBox = () => {
           <p className="image-description">Twiter</p>
         </div>
         <div className="image-tile" onClick={handleLogin}>
-          <img src="/images/image7.png" alt="Image8" className="content-image" />
+          <img src="/images/image8.png" alt="Image8" className="content-image1 mb-2" />
           <p className="image-description">LinkedIn</p>
         </div>
       </div>
