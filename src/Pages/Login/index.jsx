@@ -15,12 +15,6 @@ const Login = () => {
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string().email("Invalid email").required("Email is required"),
-		password: Yup.string()
-			.required("Password is required")
-			.matches(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-				"Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
-			),
 	});
 
 	const handleSubmit = async (values) => {
@@ -52,7 +46,7 @@ const Login = () => {
 			localStorage.setItem("userName", responseData.username);
 			localStorage.setItem("UserId", responseData.UserId);
 			window.alert("Logged In Successfully");
-	        window.location.href = "/dashboard";
+	        // window.location.href = "/dashboard";
 			// Redirect to dashboard or any other protected route
 		} catch (error) {
 			// Handle login error

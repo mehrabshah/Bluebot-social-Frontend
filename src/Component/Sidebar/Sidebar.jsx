@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHome, FaChartBar, FaCalendarAlt, FaTasks, FaInbox, FaSearch, FaCog ,FaLibraryIcon} from 'react-icons/fa';
 import './Sidebar.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet,Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 
 const Sidebar = () => {
@@ -30,10 +30,11 @@ const Sidebar = () => {
             <img src='/images/analysis.png' className="iconImg" />
             Analytics
           </a>
-          <a href="#">
+          <Link to="/schedulePost">
             <img src='/images/calender.png' className="iconImg" />
             Calendar
-          </a>
+            </Link>
+      
           <a href="#">
             <img src='/images/planning.png' className="iconImg" />
             Planning
