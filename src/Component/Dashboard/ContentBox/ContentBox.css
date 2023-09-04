@@ -17,14 +17,25 @@
   text-align: center;
  
 }
-
+.dialog-box{
+  padding: 10px;
+  height: 40vh;
+}
+.dialog-box input{
+  border-radius: 12px;
+  padding: 10px 15px;
+  border: 1px solid  #37FDB2;
+}
 .image-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 15px;
 }
-
+.twitter-api-button{
+  border: none;
+  border-radius: 12px;
+}
 .image-tile {
   display: flex;
   flex-direction: column;
