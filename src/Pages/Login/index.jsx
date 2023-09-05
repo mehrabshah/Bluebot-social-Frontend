@@ -40,7 +40,7 @@ const Login = () => {
       const responseData = await response.json()
       console.log(responseData)
       // Store token and other information in local storage
-      localStorage.setItem('token', responseData.token)
+      localStorage.setItem('Bluebottoken', responseData.token)
       localStorage.setItem('role', responseData.role)
       localStorage.setItem('email', responseData.email)
       localStorage.setItem('userName', responseData.username)

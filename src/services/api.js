@@ -1,3 +1,3 @@
-const BASE_URL = 'http://85.215.33.152';
+const BASE_URL = 'https://app.bluebotsocial.com';
 
 export default BASE_URL;
