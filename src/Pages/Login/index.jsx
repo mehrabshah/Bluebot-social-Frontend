@@ -6,12 +6,14 @@ import * as Yup from 'yup'
 import './login.css'
 import BASE_URL from '../../services/api'
 
+
+
 const Login = () => {
+  const navigate = useNavigate();
   const initialValues = {
     email: '',
     password: '',
   }
-  const navigate = useNavigate()
   const [togglePassword, setTogglePassword] = useState(false)
 
   const validationSchema = Yup.object().shape({
@@ -36,7 +38,7 @@ const Login = () => {
         const errorResponseData = await response.json()
         throw new Error(errorResponseData.message || 'An error occurred')
       }
-
+      
       const responseData = await response.json()
       console.log(responseData)
       // Store token and other information in local storage
@@ -45,10 +47,10 @@ const Login = () => {
       localStorage.setItem('email', responseData.email)
       localStorage.setItem('userName', responseData.username)
       localStorage.setItem('UserId', responseData.UserId)
-      window.alert('Logged In Successfully')
+      navigate('/dashboard')
+      // window.alert('Logged In Successfully')
       // window.location.href = '/dashboard'
       // window.location.href = '/socialProfile'
-      navigate('/dashboard')
 
       // Redirect to dashboard or any other protected route
     } catch (error) {
