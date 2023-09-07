@@ -7,6 +7,7 @@ import Sidebar from '../Component/Sidebar/Sidebar';
 import SocialProfile from '../Pages/socialProfile';
 import SchedulePost from '../Pages/CalenderPost';
 import PrivacyPolicy from '../Pages/privacyPolicy/privacyPolicy';
+import Terms from '../Pages/terms/terms';
 
 const AppRoutes = () => {
   const isAuthenticatedUser = localStorage.getItem('Bluebottoken');
@@ -16,6 +17,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<Terms />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/" element={<Sidebar />}>
