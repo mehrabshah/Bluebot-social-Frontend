@@ -10,6 +10,9 @@ const ContentBox = () => {
   const handleLogin = () => {
     window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`
   }
+  const [linkedInImageURL, setLinkedInImageURL] = useState('/images/image8.png');
+  const [linkedInBorderRadius, setlinkedBorderRadius] = useState('0px');
+
   const urlSearchParams = new URLSearchParams(window.location.search)
   const code = urlSearchParams?.get('code')
   console.log({code});
@@ -21,9 +24,12 @@ const ContentBox = () => {
           userId: userId,
         }
         try {
+          debugger;
           const response = await axios.post(`${BASE_URL}/auth/linkedin/create-linkedin-user`, requestBody)
           const res = response?.data
-          console.log(res)
+          console.log(res,"REPSONE HERE WITH PROFIle")
+          setLinkedInImageURL(res.profilePicture)
+          setlinkedBorderRadius('70px')
         } catch (error) {
           console.error('Error exchanging code for access token:', error)
         }
@@ -307,7 +313,7 @@ const ContentBox = () => {
           )}
         </div>
         <div className="image-tile" onClick={handleLogin}>
-          <img src="/images/image8.png" alt="Image8" className="content-image1 mb-2" />
+          <img src={linkedInImageURL}  style={{borderRadius:linkedInBorderRadius}} alt="Image8" className="content-image1 mb-2" />
           <p className="image-description">LinkedIn</p>
         </div>
       </div>
