@@ -7,6 +7,7 @@ const ContentBox = () => {
   const userId = localStorage.getItem('UserId')
   const clientId = '86zepiufo3et2u'
   const redirectUri = 'http://localhost:3000/dashboard'
+
   const handleLogin = () => {
     window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`
   }
@@ -15,7 +16,16 @@ const ContentBox = () => {
 
   const urlSearchParams = new URLSearchParams(window.location.search)
   const code = urlSearchParams?.get('code')
-  console.log({code});
+  console.log({ code });
+
+  // Pinterest Login 
+
+  const handlePinterestLogin = () => {
+  
+    window.location.href = `https://api.pinterest.com/oauth/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=read_public`;
+  }
+
+
   useEffect(() => {
     if (code) {
       const exchangeCodeForAccessToken = async () => {
@@ -27,7 +37,7 @@ const ContentBox = () => {
           debugger;
           const response = await axios.post(`${BASE_URL}/auth/linkedin/create-linkedin-user`, requestBody)
           const res = response?.data
-          console.log(res,"REPSONE HERE WITH PROFIle")
+          console.log(res, "REPSONE HERE WITH PROFIle")
           setLinkedInImageURL(res.profilePicture)
           setlinkedBorderRadius('70px')
         } catch (error) {
@@ -101,7 +111,7 @@ const ContentBox = () => {
     js.src = 'http://connect.facebook.net/en_US/sdk.js';
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'facebook-jssdk');
-  
+
   window.fbAsyncInit = function () {
     window.FB.init({
       appId: '727057952593031',
@@ -171,7 +181,7 @@ const ContentBox = () => {
       </div>
 
       <div className="image-container p-md-4 align-items-center">
-      <div>
+        <div>
           <div className="image-tile" onClick={handleLoginFb}>
             {profileImageURL ? (
               <>
@@ -223,7 +233,7 @@ const ContentBox = () => {
             </div>
           )}
         </div>
-        <div className="image-tile">
+        <div className="image-tile" onClick={handlePinterestLogin}>
           <img src="/images/image2.png" alt="Image2" className="content-image" />
           <p className="image-description">Pintrest</p>
         </div>

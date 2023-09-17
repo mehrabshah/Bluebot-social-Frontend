@@ -63,9 +63,9 @@ const SignUp = () => {
       </div>
         </div>
 			<div className="login-container">
-				<div class="card col-md-4">
+				<div className="card col-md-4">
 					<h2 className="text-center">Create a account</h2>
-					<div class="card-body">
+					<div className="card-body">
 						<Formik
 							initialValues={initialValues}
 							validationSchema={validationSchema}

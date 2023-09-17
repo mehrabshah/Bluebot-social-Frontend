@@ -120,17 +120,17 @@ export default function TuiCalendar() {
       html.push("<strong>" + _getFormattedTime(schedule.start) + "</strong> ");
     }
     if (schedule.isPrivate) {
-      html.push('<span class="calendar-font-icon ic-lock-b"></span>');
+      html.push('<span className="calendar-font-icon ic-lock-b"></span>');
       html.push(" Private");
     } else {
       if (schedule.isReadOnly) {
-        html.push('<span class="calendar-font-icon ic-readonly-b"></span>');
+        html.push('<span className="calendar-font-icon ic-readonly-b"></span>');
       } else if (schedule.recurrenceRule) {
-        html.push('<span class="calendar-font-icon ic-repeat-b"></span>');
+        html.push('<span className="calendar-font-icon ic-repeat-b"></span>');
       } else if (schedule.attendees.length) {
-        html.push('<span class="calendar-font-icon ic-user-b"></span>');
+        html.push('<span className="calendar-font-icon ic-user-b"></span>');
       } else if (schedule.location) {
-        html.push('<span class="calendar-font-icon ic-location-b"></span>');
+        html.push('<span className="calendar-font-icon ic-location-b"></span>');
       }
       html.push(" " + schedule.title);
     }

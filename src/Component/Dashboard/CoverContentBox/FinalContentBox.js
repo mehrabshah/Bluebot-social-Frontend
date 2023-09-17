@@ -7,8 +7,6 @@ import PrivacyPolicyModal from '../../privacyModel/privacyModel'
 // import Sidebar from '../../Sidebar/Sidebar';
 
 const FinalContentBox = () => {
-  console.log("FINAL COMPONENT WORKED")
-  // debugger;
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const privacyPolicyAgreed = localStorage.getItem('privacyPolicyAgree');
   useEffect(() => {

@@ -78,9 +78,9 @@ const Login = () => {
           </div>
         </div>
         <div className="login-container">
-          <div class="card col-md-4">
+          <div className="card col-md-4">
             <h2 className="text-center">Sign in to Continue </h2>
-            <div class="card-body">
+            <div className="card-body">
               <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 <Form>
                   <div className="form-group">

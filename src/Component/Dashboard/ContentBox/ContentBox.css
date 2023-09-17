@@ -49,6 +49,11 @@
   text-align: center;
 }
 
+.image-tile:hover {
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+
 .content-image {
   width: 95px;
   height: 96px;

@@ -5,6 +5,8 @@ import BASE_URL from '../../../services/api'
 
 export default function SchedulePostModal() {
   const [image, setImage] = useState(null)
+  const [postStatus, setPostStatus] = useState("TEXT")
+  const [previewImage, setPreviewImage] = useState(null)
   const [selectedOption, setSelectedOption] = useState('1')
   const [date, setDate] = useState(new Date())
   const [selectedLogo, setSelectedLogo] = useState(null);
@@ -16,9 +18,11 @@ export default function SchedulePostModal() {
     try {
       const formData = new FormData()
       formData.append('type', payload.type)
-      formData.append('text1', payload.text1)
+      formData.append('text', payload.text)
+      formData.append('text1', payload.text)
       formData.append('text2', payload.text2)
       formData.append('date', payload.date)
+      formData.append('post', payload.post)
       formData.append('img', image)
       formData.append('user', payload.user)
       const res = await axios.post(`${BASE_URL}/post/createPost`, formData, {
@@ -47,14 +51,22 @@ export default function SchedulePostModal() {
     setInputTwo(value)
   }
 
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setPostStatus("MEDIA")
+    setPreviewImage(URL.createObjectURL(file))
+  };
+
   const handleSubmit = () => {
     const payload = {
       type: selectedOption,
-      text1: inputOne,
+      text: inputOne,
       text2: inputTwo,
       date: date,
       img: image,
       user: userId,
+      post:postStatus
     }
     addPost(payload)
     console.log(payload)
@@ -98,11 +110,12 @@ export default function SchedulePostModal() {
               </div>
               <div className="flex-item">
                 <select
-                  class="form-select form-select-lg mb-3"
+                  className="form-select form-select-lg mb-3"
                   aria-label="Large select example"
                   value={selectedOption}
                   onChange={e => {
                     setImage(null)
+                    setPostStatus("TEXT")
                     setSelectedOption(e.target.value)
                   }}
                 >
@@ -128,12 +141,13 @@ export default function SchedulePostModal() {
                       accept="image/*, video/*"
                       className="input-field"
                       hidden
-                      onChange={({ target: { files } }) => {
-                        if (files) {
-                          console.log('mehrab')
-                          setImage(URL.createObjectURL(files[0]))
-                        }
-                      }}
+                      // onChange={({ target: { files } }) => {
+                      //   if (files) {
+                      //     console.log('mehrab')
+                      //     setImage(URL.createObjectURL(files[0]))
+                      //   }
+                      // }}
+                      onChange={handleImage}
                     />
                     <img src="./images/media.png" alt="mediaPic" className="img-fluid"></img>
                     <h2 className="model-body-text mt-3">Add Media</h2>
@@ -144,10 +158,10 @@ export default function SchedulePostModal() {
                     {image ? <></> : <h1 className="Preview-heading">Preview</h1>}
                     {image &&
                       (selectedOption === 'image' ? (
-                        <img src={image} className="preview-image img-fluid" alt="img"></img>
+                        <img src={previewImage} className="preview-image img-fluid" alt="img"></img>
                       ) : (
                         <video alt="Preview" controls className="preview-image img-fluid">
-                          <source src={image} type="video/mp4" />
+                          <source src={previewImage} type="video/mp4" />
                         </video>
                       ))}
                   </div>
