@@ -18,8 +18,15 @@
   border-radius: 8px;
   overflow: scroll;
 }
+.image-option-container {
+  align-items: center;
+}
+
 .image-option-container img {
   height: 40px;
+}
+.select-board-container {
+  width: 34%;
 }
 .selected-fields-container{
   display: flex;
