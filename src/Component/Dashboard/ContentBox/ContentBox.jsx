@@ -2,43 +2,113 @@ import React, { useState } from 'react'
 import './ContentBox.css'
 import axios from 'axios'
 import { useEffect } from 'react'
+
 import BASE_URL from '../../../services/api'
 const ContentBox = () => {
   const userId = localStorage.getItem('UserId')
   const clientId = '86zepiufo3et2u'
   const redirectUri = 'http://localhost:3000/dashboard'
 
-  const handleLogin = () => {
-    window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`
+  const pinterestAppID = '1490810';
+  const pinterestAppSecret = '30ad32a1f376f604ae9c762926426b69000654b0';
+
+  const tiktokClientKey = 'awkgprboqtg9y4g8';
+
+  const [accessToken, setAccessToken] = useState('');
+
+  // Linkedin Login
+
+  const handleLogin = (socialPlatform) => {
+
+    switch (socialPlatform){
+      case 'LinkedIn':
+        window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`;
+        localStorage.setItem('socialPlatform', 'LinkedIn');
+        break;
+      case 'Pinterest':
+        window.location.href = `https://www.pinterest.com/oauth/?client_id=${pinterestAppID}&redirect_uri=${redirectUri}&response_type=code&scope=boards:read,pins:read,boards:write,pins:write,user_accounts:read&`;
+        localStorage.setItem('socialPlatform', 'Pinterest');
+        break;
+      case 'Tiktok':
+        window.location.href = `https://www.tiktok.com/v2/auth/authorize/?client_key=${tiktokClientKey}&response_type=code&scope=user.info.basic&redirect_uri=${redirectUri}&state=<state>`;
+        localStorage.setItem('socialPlatform', 'Tiktok');
+        break;
+      default:
+        console.log("Not any social platform")
+
+    }
+
   }
   const [linkedInImageURL, setLinkedInImageURL] = useState('/images/image8.png');
+  const [pinterestImageURL, setPinterestImageURL] = useState('/images/image2.png');
+  const [tiktokImageURL, setTiktokImageURL] = useState('/images/image4.png');
   const [linkedInBorderRadius, setlinkedBorderRadius] = useState('0px');
 
   const urlSearchParams = new URLSearchParams(window.location.search)
   const code = urlSearchParams?.get('code')
   console.log({ code });
 
-  // Pinterest Login 
-
-  const handlePinterestLogin = () => {
-  
-    window.location.href = `https://api.pinterest.com/oauth/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=read_public`;
-  }
-
 
   useEffect(() => {
+
+    // Get the profile image from local storage if logged in already
+    const linkedInProfileImage = localStorage.getItem("linkedInProfileImage");
+    const pinterestProfileImage = localStorage.getItem("pinterestProfileImage");
+    const tiktokProfileImage = localStorage.getItem("tittokProfileImage");
+
+    if (linkedInProfileImage && linkedInProfileImage !== "undefined")
+    {
+      setLinkedInImageURL(linkedInProfileImage);
+    }
+    if (pinterestProfileImage && pinterestProfileImage !== "undefined")
+    {
+      setPinterestImageURL(pinterestProfileImage);
+    }
+    if (tiktokProfileImage && tiktokProfileImage !== "undefined")
+    {
+      setTiktokImageURL(tiktokProfileImage);
+    }
+
     if (code) {
+      const socialPlatform = localStorage.getItem('socialPlatform');
       const exchangeCodeForAccessToken = async () => {
         const requestBody = {
           code: code,
           userId: userId,
         }
         try {
-          debugger;
-          const response = await axios.post(`${BASE_URL}/auth/linkedin/create-linkedin-user`, requestBody)
+          switch (socialPlatform) {
+            case "LinkedIn":
+              var response = await axios.post(`${BASE_URL}/auth/linkedin/create-linkedin-user`, requestBody);
+              break;
+            case "Pinterest":
+              var response = await axios.post(`${BASE_URL}/auth/pinterest/create-pinterest-user`, requestBody)
+              break;
+            case "Tiktok":
+              var response = await axios.post(`${BASE_URL}/auth/linkedin/create-tiktok-user`, requestBody);
+              break;
+            default:
+              console.log("No Social Platform in Local Storage")
+          }
           const res = response?.data
           console.log(res, "REPSONE HERE WITH PROFIle")
-          setLinkedInImageURL(res.profilePicture)
+
+          switch (socialPlatform) {
+            case "LinkedIn":
+              localStorage.setItem("linkedInProfileImage", res.profilePicture);
+              setLinkedInImageURL(res.profilePicture)
+              break;
+              case "Pinterest":
+              localStorage.setItem("pinterestProfileImage", res.profilePicture);
+              setPinterestImageURL(res.profilePicture)
+              break;
+              case "Tiktok":
+              localStorage.setItem("tiktokProfileImage", res.profilePicture);
+              console.log("Tiktok Selected")
+              break;
+            default:
+              console.log("No Social Platform in Local Storage")
+          }
           setlinkedBorderRadius('70px')
         } catch (error) {
           console.error('Error exchanging code for access token:', error)
@@ -233,9 +303,9 @@ const ContentBox = () => {
             </div>
           )}
         </div>
-        <div className="image-tile" onClick={handlePinterestLogin}>
-          <img src="/images/image2.png" alt="Image2" className="content-image" />
-          <p className="image-description">Pintrest</p>
+        <div className="image-tile" onClick={() => handleLogin("Pinterest")}>
+          <img src={pinterestImageURL} style={{borderRadius:'4rem'}} alt="Image2" className="content-image" />
+          <p className="image-description">Pinterest</p>
         </div>
 
         <div className="image-tile">
@@ -243,9 +313,9 @@ const ContentBox = () => {
           <p className="image-description">Youtube</p>
         </div>
 
-        <div className="image-tile">
-          <img src="/images/image4.png" alt="Image4" className="content-image" />
-          <p className="image-description">TickTock</p>
+        <div className="image-tile" onClick={() => handleLogin("Tiktok")}>
+          <img src={tiktokImageURL} alt="Image4" className="content-image" />
+          <p className="image-description">TikTok</p>
         </div>
 
         <div className="image-tile">
@@ -322,8 +392,8 @@ const ContentBox = () => {
             </>
           )}
         </div>
-        <div className="image-tile" onClick={handleLogin}>
-          <img src={linkedInImageURL}  style={{borderRadius:linkedInBorderRadius}} alt="Image8" className="content-image1 mb-2" />
+        <div className="image-tile" onClick={() => handleLogin("LinkedIn")}>
+          <img src={linkedInImageURL}  style={{borderRadius: linkedInBorderRadius}} alt="Image8" className="content-image1 mb-2" />
           <p className="image-description">LinkedIn</p>
         </div>
       </div>

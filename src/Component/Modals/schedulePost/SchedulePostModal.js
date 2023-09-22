@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SchedulePostModal.css'
 import axios from 'axios'
 import BASE_URL from '../../../services/api'
@@ -7,36 +7,58 @@ export default function SchedulePostModal() {
   const [image, setImage] = useState(null)
   const [postStatus, setPostStatus] = useState("TEXT")
   const [previewImage, setPreviewImage] = useState(null)
-  const [selectedOption, setSelectedOption] = useState('1')
+  const [selectedOption, setSelectedOption] = useState('')
   const [date, setDate] = useState(new Date())
   const [selectedLogo, setSelectedLogo] = useState(null);
-  const [inputOne, setInputOne] = useState()
-  const [inputTwo, setInputTwo] = useState()
+  const [postTitle, setPostTitle] = useState('')
+  const [postDescription, setPostDescription] = useState('')
+  const [boards, setBoards] = useState(null);
+  const [selectedPinBoard, setSelectedPinBoard] = useState(null);
   const userId = localStorage.getItem('UserId')
+
+
+  useEffect(() => {
+    const getPinBoards = async () => {
+      const res = await axios.post(`${BASE_URL}/auth/pinterest/get-boards`, { userId }, {
+        headers: {
+          // 'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+        },
+      })
+      console.log("Boards: " + JSON.stringify(res.data.items))
+      setBoards(res.data.items);
+    }
+
+    getPinBoards()
+
+  }, [])
 
   const addPost = async payload => {
     try {
       const formData = new FormData()
       formData.append('type', payload.type)
       formData.append('text', payload.text)
-      formData.append('text1', payload.text)
-      formData.append('text2', payload.text2)
+      formData.append('title', payload.text)
+      formData.append('desc', payload.text2)
       formData.append('date', payload.date)
       formData.append('post', payload.post)
       formData.append('img', image)
       formData.append('user', payload.user)
-      const res = await axios.post(`${BASE_URL}/post/createPost`, formData, {
+      const res = await axios.post(`${BASE_URL}/auth/pinterest/create-post`, payload, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          // 'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
       })
-      if (res) {
+      if (res.status === 201) {
         console.log(res)
+        alert(res.data.message)
       }
     } catch (e) {
       console.log(e)
     }
   }
+
   const handleLogoClick = (value) => {
     // Update the selected logo and "type" in FormData
     setSelectedLogo(value);
@@ -44,29 +66,38 @@ export default function SchedulePostModal() {
   };
 
   const handleInputChangeOne = value => {
-    setInputOne(value)
+    setPostTitle(value)
   }
 
   const handleInputChangeTwo = value => {
-    setInputTwo(value)
+    setPostDescription(value)
   }
 
   const handleImage = (e) => {
     const file = e.target.files[0];
-    setImage(file);
+    setImage(URL.createObjectURL(file));
     setPostStatus("MEDIA")
     setPreviewImage(URL.createObjectURL(file))
   };
 
   const handleSubmit = () => {
+    if (selectedPinBoard === '' || selectedPinBoard === null)
+    {
+      alert("No Board Selected for Pin Post");
+      return;
+    }
+
     const payload = {
-      type: selectedOption,
-      text: inputOne,
-      text2: inputTwo,
-      date: date,
-      img: image,
-      user: userId,
-      post:postStatus
+      postData: {
+        type: selectedOption,
+        title: postTitle,
+        desc: postDescription,
+        date: date,
+        img: image,
+        post: postStatus,
+        pinBoard: selectedPinBoard
+      },
+      userId: userId,
     }
     addPost(payload)
     console.log(payload)
@@ -74,14 +105,14 @@ export default function SchedulePostModal() {
   console.log(selectedOption)
   return (
     <div className="modal-post" >
-      <div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style={{ backgroundColor: 'white', width: '80%' }}>
+      <div className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style={{ backgroundColor: 'white', width: '80%' }}>
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="post-heading">Create your post</h1>
               <div className="image-option-container d-flex justify-content-between mt-3 mb-md-3 mb-1">
                 <div className="flex-item">
-                <img
+                  <img
                     src="./images/facebook.png"
                     className={`img-fluid ms-2 ${selectedLogo === 'FACEBOOK' ? 'selected' : ''}`}
                     alt="fbimg"
@@ -107,6 +138,35 @@ export default function SchedulePostModal() {
                   />
 
                 </div>
+                {selectedOption === 'PINTEREST' ?
+                  <div className='select-board-container'>
+                    <label htmlFor="boardSelect">Choose a Board for Pin:</label>
+                    <select
+                      id='boardSelect'
+                      className="form-select form-select-lg mb-3"
+                      // aria-label="Large select example"
+                      value={boards !== undefined || boards !== null ? selectedPinBoard : <span>NO BOARDS Avaialable</span>}
+                      onChange={e => {
+                        console.log(e.target.value)
+                        setSelectedPinBoard(e.target.value)
+                      }}
+                    >
+                      <option value=''>No Board Selected</option>
+                      {
+                        boards !== undefined && boards !== null ? (
+                          boards.map((board, index) => (
+                            <option key={index} value={board.id}>{board.name}</option>
+                          ))
+                        )
+                          :
+                          (
+                            <option value=''>NO BOARDS Available</option>
+                          )
+                      }
+                    </select>
+                  </div>
+                  : null
+                }
               </div>
               <div className="flex-item">
                 <select
@@ -119,15 +179,15 @@ export default function SchedulePostModal() {
                     setSelectedOption(e.target.value)
                   }}
                 >
-                  <option selected>Open this select menu</option>
+                  {/* <option selected>Open this select menu</option> */}
                   <option value="image">image</option>
                   <option value="video">video</option>
                 </select>
                 <div className='d-flex flex-wrap' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <div className="selected-fields-container d-flex flex-wrap">
-          <input type="text" placeholder="Add Post Text Here" value={inputOne} onChange={e => handleInputChangeOne(e.target.value)} />
-          <input type="text" placeholder="Add Tags Here" className='ms-md-4 ms-1' value={inputTwo} onChange={e => handleInputChangeTwo(e.target.value)} />
-        </div>
+                  <div className="selected-fields-container d-flex flex-wrap">
+                    <input type="text" placeholder="Add Post Text Here" value={postTitle} onChange={e => handleInputChangeOne(e.target.value)} />
+                    <input type="text" placeholder="Add Tags Here" className='ms-md-4 ms-1' value={postDescription} onChange={e => handleInputChangeTwo(e.target.value)} />
+                  </div>
                   <input type="datetime-local" value={date} onChange={e => setDate(e.target.value)} />
                 </div>
               </div>
