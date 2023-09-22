@@ -101,6 +101,7 @@ const ContentBox = () => {
               case "Pinterest":
               localStorage.setItem("pinterestProfileImage", res.profilePicture);
               setPinterestImageURL(res.profilePicture)
+              localStorage.setItem("pinterestLoginStatus", true)
               break;
               case "Tiktok":
               localStorage.setItem("tiktokProfileImage", res.profilePicture);

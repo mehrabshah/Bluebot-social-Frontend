@@ -15,6 +15,7 @@ export default function SchedulePostModal() {
   const [boards, setBoards] = useState(null);
   const [selectedPinBoard, setSelectedPinBoard] = useState(null);
   const userId = localStorage.getItem('UserId')
+  const pinterestLoginStatus = localStorage.getItem('pinterestLoginStatus')
 
 
   useEffect(() => {
@@ -29,9 +30,13 @@ export default function SchedulePostModal() {
       setBoards(res.data.items);
     }
 
-    getPinBoards()
+    if(selectedOption === 'PINTEREST')
+    {
+      getPinBoards()
+    }
 
-  }, [])
+
+  }, [selectedOption])
 
   const addPost = async payload => {
     try {
@@ -44,7 +49,8 @@ export default function SchedulePostModal() {
       formData.append('post', payload.post)
       formData.append('img', image)
       formData.append('user', payload.user)
-      const res = await axios.post(`${BASE_URL}/auth/pinterest/create-post`, payload, {
+      const res = await axios.post(`${BASE_URL}/post/createPost`, payload, {
+      // const res = await axios.post(`${BASE_URL}/auth/pinterest/create-post`, payload, {
         headers: {
           // 'Content-Type': 'multipart/form-data',
           'Content-Type': 'application/json',
@@ -81,11 +87,11 @@ export default function SchedulePostModal() {
   };
 
   const handleSubmit = () => {
-    if (selectedPinBoard === '' || selectedPinBoard === null)
-    {
-      alert("No Board Selected for Pin Post");
-      return;
-    }
+    // if (selectedPinBoard === '' || selectedPinBoard === null)
+    // {
+    //   alert("No Board Selected for Pin Post");
+    //   return;
+    // }
 
     const payload = {
       postData: {
@@ -128,7 +134,7 @@ export default function SchedulePostModal() {
                     src="./images/pinterest.png"
                     className={`img-fluid ms-2 ${selectedLogo === 'PINTEREST' ? 'selected' : ''}`}
                     alt="pinterestimg"
-                    onClick={() => handleLogoClick('PINTEREST')}
+                    onClick={() => (pinterestLoginStatus ? handleLogoClick('PINTEREST') : null)}
                   />
                   <img
                     src="./images/image8.png"
