@@ -1,85 +1,190 @@
-.logo-heading1{
-  font-family: 'Vremena Grotesk', sans-serif;
-font-size: 32px;
-font-weight: 500;
-line-height: 32px;
-letter-spacing: 0.06em;
-text-align: left;
-color: #37FDB2;
-
+.logo-heading1 {
+  font-family: "Vremena Grotesk", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: #37fdb2;
 }
-.main-container-login{
-  background: linear-gradient(180deg, #E8F0FE 0%, #FAFCFF 100%);
+.main-container-login {
+  background: linear-gradient(180deg, #37fdb2 0%, #1976d2 100%);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
-.auth-tabs button{
+
+.auth-tabs button {
   border: none;
   /* border-radius: 10px; */
   background-color: white;
   display: flex;
   flex-direction: column;
 }
-.auth-tabs{
+.auth-tabs {
   background-color: white;
 }
 .login-container {
-     
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.custom-buttonn{
-  background: linear-gradient(180deg, #91FBD3 0%, rgba(55, 253, 178, 0) 100%) !important;
-  ; /* Button color */
-  box-shadow: 0px 4px 4px 0px #00000040;
-  padding: 5px 15px;
-
-  color: #000000 !important; 
-}
-.settings-button-container{
+.settings-button-container {
   background-color: white;
   border-radius: 8px;
   padding: 5px 15px;
   box-shadow: 0px 4px 4px 0px #00000040;
-
 }
-.card{
-
-   padding: 30px;
-   border-radius: 10px;
-
+.card {
+  padding: 30px;
+  border-radius: 10px;
 }
-.login-container img,.signup-container img  {
-  height: auto;
-  width: 800px;
+.login-container img,
+.signup-container img {
+  height: 100%;
+  width: 900px;
 }
-.login-container .card{
+.login-container .card {
   background-color: #ffffff;
 }
-  
-  .scroll-animation {
-    animation: slide-in 0.5s ease-in-out;
-  }
-  
-  @keyframes slide-in {
-    from {
-      transform: translateY(-40px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
 
-  .auth-tab.active {
-    border-left: 2px solid #00ff00;
+.scroll-animation {
+  animation: slide-in 0.5s ease-in-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
   }
-  
-  @media (max-width: 768px) {
-    .login-container {
-      padding: 20px;
-    }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
+}
+
+.auth-tab.active {
+  border-left: 2px solid #00ff00;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
+}
+.no-account {
+  font-family: "Vremena Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+  color: gray;
+  margin-bottom: 30px;
+}
+.no-account span {
+  color: #37fdb2;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  margin-left: 5px;
+}
+
+.form-container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles for the label */
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: flex;
+  font-size: medium;
+  color: #37fdb2;
+}
+
+/* Styles for the input container */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/* Styles for the input field */
+.field-class {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: small;
+}
+
+/* Styles for the email icon */
+.email-icon {
+  padding-right: 5px;
+  color: #777;
+}
+
+/* Styles for the error message */
+.error {
+  color: red;
+  display: flex;
+  font-size: 10px;
+  gap: 2px;
+}
+.asterisk {
+  color: red;
+  font-size: 5px;
+  padding-top: 2px;
+}
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #91fbd3 0%,
+    rgba(55, 253, 178, 0) 100%
+  ) !important; /* Button color */
+  box-shadow: 0px 4px 4px 0px #00000040;
+  padding: 5px 15px;
+
+  color: #000000 !important;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+.privacy {
+  font-family: "Vremena Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 10px;
+  color: gray;
+  margin-top: 20px;
+}
+.span-priv {
+  padding-top: 10px;
+}
+.span-priv-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.show-password {
+  color: #1976d2;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
