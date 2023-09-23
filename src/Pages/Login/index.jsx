@@ -1,87 +1,127 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import BASE_URL from "../../services/api";
 import './login.css'
-import BASE_URL from '../../services/api'
-
-
-
-const Login = () => {
+const Auth = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("login");
+
   const initialValues = {
-    email: '',
-    password: '',
-  }
-  const [togglePassword, setTogglePassword] = useState(false)
+    email: "",
+    password: "",
+    gender: "",
+    firstName: "",
+    lastName: "",
+  };
+
+  const [togglePassword, setTogglePassword] = useState(false);
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-  })
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
+      ),
+    gender: Yup.string().required("Gender is required"),
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
+  });
 
-  const handleSubmit = async values => {
+  const handleLoginSubmit = async (values) => {
     try {
-      const response = await fetch(`${BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
-      })
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
+        email: values.email,
+        password: values.password,
+      });
 
-      if (!response.ok) {
-        // Check for non-2xx HTTP response status
-        const errorResponseData = await response.json()
-        throw new Error(errorResponseData.message || 'An error occurred')
+      if (response.status === 200) {
+        const responseData = response.data;
+        // Store token and other information in local storage
+        localStorage.setItem("Bluebottoken", responseData.token);
+        localStorage.setItem("role", responseData.role);
+        localStorage.setItem("email", responseData.email);
+        localStorage.setItem("userName", responseData.username);
+        localStorage.setItem("UserId", responseData.UserId);
+        navigate("/dashboard");
+      } else {
+        throw new Error("Login failed");
       }
-      
-      const responseData = await response.json()
-      console.log(responseData)
-      // Store token and other information in local storage
-      localStorage.setItem('Bluebottoken', responseData.token)
-      localStorage.setItem('role', responseData.role)
-      localStorage.setItem('email', responseData.email)
-      localStorage.setItem('userName', responseData.username)
-      localStorage.setItem('UserId', responseData.UserId)
-      navigate('/dashboard')
-      // window.alert('Logged In Successfully')
-      // window.location.href = '/dashboard'
-      // window.location.href = '/socialProfile'
-
-      // Redirect to dashboard or any other protected route
     } catch (error) {
-      // Handle login error
-      window.alert(error.message || 'An error occurred during login')
+      window.alert(error.message || "An error occurred during login");
     }
-  }
+  };
+
+  const handleSignupSubmit = async (values) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/auth/signup`, values);
+
+      if (response.status === 200) {
+        window.alert("Successfully Signed Up");
+        navigate("/login");
+      } else {
+        throw new Error("Signup failed");
+      }
+    } catch (error) {
+      window.alert(error.message || "An error occurred during SignUp");
+    }
+  };
+
+  const switchToLogin = () => {
+    setActiveTab("login");
+  };
+
+  const switchToSignup = () => {
+    setActiveTab("signup");
+  };
 
   return (
     <>
-      <div className="main-container-login">
-        <div className="container-fluid d-flex align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <img src="/images/robot1.png" alt="Robot" className="robot-image" />
-            <h4 className="logo-heading1">BLUEBOT SOCIAL</h4>
-          </div>
-          <div className="d-flex align-items-center">
-            {/* <button className="btn custom-buttonn me-2">add post</button> */}
-            <div className="d-flex settings-button-container">
-              <img className="me-2" src="/images/das.png" alt="Dashboard" />
-              <img className="me-2" src="/images/noti.png" alt="Notifications" />
-              <img className="me-2" src="/images/setting.png" alt="Profile" />
-              <img className="" src="/images/pro.png" alt="Settings" />
+      <div className="main-container-login display-flex flex-column justify-content-center align-items-center">
+        <div className="d-flex w-100 justify-content-center align-items-center">
+        <div className="auth-tabs alig-items-center">
+        <img src="/images/robot1.png" alt="Robot" className="-image" />
+          <button
+            className={`mt-3 mb-3 auth-tab ${
+              activeTab === "login" ? "active" : ""
+            }`}
+            onClick={switchToLogin}
+          >
+            <div className="d-flex flex-column align-items-center p-3 switch-tabs-auth">
+            <i className="fas fa-user mb-2" style={{ fontSize: '24px' }}></i>
+
+              <p className="m-0">Login</p>
             </div>
-          </div>
+          </button>
+          <button
+            className={`mt-3 mb-3 auth-tab ${
+              activeTab === "signup" ? "active" : ""
+            }`}
+            onClick={switchToSignup}
+          >
+            <div className="d-flex flex-column align-items-center p-2 switch-tabs-auth">
+            <i className="fas fa-user mb-2" style={{ fontSize: '24px' }}></i>
+            
+              <p className="m-0">SignUp</p>
+            </div>
+          </button>
         </div>
-        <div className="login-container">
-          <div className="card col-md-4">
-            <h2 className="text-center">Sign in to Continue </h2>
-            <div className="card-body">
-              <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+
+      {activeTab === "login" && (
+        
+        <div className="login-container scroll-animation">
+          <img src="/images/loginPeople.png" alt="Image 2" className="img-fluid" />
+          <div className="card">
+            <h2 className="text-center">Sign in to Continue</h2>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleLoginSubmit}
+            >
                 <Form>
                   <div className="form-group">
                     <label htmlFor="email ">Email</label>
@@ -114,17 +154,87 @@ const Login = () => {
                     Login
                   </button>
                 </Form>
-              </Formik>
-              <hr />
-              <Link to="/signup" className="button btn custom-buttonn">
-                Don't have an account? Signup
-              </Link>
-            </div>
+            </Formik>
           </div>
         </div>
+      )}
+
+      {activeTab === "signup" && (
+        <div className="login-container scroll-animation">
+          <img src="/images/signUpPeople.jpg" alt="Image 2" className="img-fluid" />
+          <div className="card">
+            <h2 className="text-left create-account-heading">Create an account</h2>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSignupSubmit}
+            >
+							<Form>
+							<div className="form-group">
+						<label htmlFor="firstName">Your Name</label>
+						<Field
+							type="text"
+							className="form-control"
+							placeholder="Enter First Name"
+							id="firstName"
+							name="firstName"
+						/>
+						<ErrorMessage name="firstName" component="div" className="alert text-danger" />
+					</div>
+								<div className="form-group">
+									<label htmlFor="email ">Email</label>
+									<Field
+										type="email"
+										className="form-control"
+										placeholder="Enter email address"
+										id="email"
+										name="email"
+										required
+									/>
+									<ErrorMessage name="email" component="div" className="alert text-danger" />
+								</div>
+								<div className="form-group">
+									<label htmlFor="password ">Password</label>
+									<Field
+										type={togglePassword ? "text" : "password"}
+										className="form-control"
+										placeholder="Enter password"
+										id="password"
+										name="password"
+										required
+									/>
+									<div
+										style={{
+                                            display: "flex",
+											width: "100%",
+											justifyContent: "flex-end",
+											marginTop: "",
+										}}
+									>
+										<span
+                                        style={{ color: "skyblue", textDecoration: "underline", cursor: "pointer" }}
+											onClick={() => {
+                                                setTogglePassword(!togglePassword);
+											}}
+										>
+											Show Password
+										</span>
+									</div>
+									<ErrorMessage name="password" component="div" className="alert text-danger" />
+								</div>
+
+								<button type="submit" to="/sidebar" className="btn custom-buttonn">
+									Sign Up
+								</button>
+							</Form>
+            </Formik>
+          </div>
+        </div>
+      )}
+      </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Auth;

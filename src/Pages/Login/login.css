@@ -12,7 +12,16 @@ color: #37FDB2;
   background: linear-gradient(180deg, #E8F0FE 0%, #FAFCFF 100%);
   min-height: 100vh;
 }
-
+.auth-tabs button{
+  border: none;
+  /* border-radius: 10px; */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.auth-tabs{
+  background-color: white;
+}
 .login-container {
      
     display: flex;
@@ -41,46 +50,32 @@ color: #37FDB2;
    border-radius: 10px;
 
 }
+.login-container img,.signup-container img  {
+  height: auto;
+  width: 800px;
+}
 .login-container .card{
   background-color: #ffffff;
 }
-.login-container .card label,h2{
-   color:#000000;
-   font-size: 20px;   
-}
   
-  
- .login-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
+  .scroll-animation {
+    animation: slide-in 0.5s ease-in-out;
   }
   
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .login-container label {
-    font-weight: bold;
-  }
-  
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-container button,  .login-container .button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  @keyframes slide-in {
+    from {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 
+  .auth-tab.active {
+    border-left: 2px solid #00ff00;
+  }
   
   @media (max-width: 768px) {
     .login-container {
