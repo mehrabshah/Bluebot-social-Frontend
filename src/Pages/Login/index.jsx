@@ -73,7 +73,7 @@ const Auth = () => {
       <div className="main-container-login display-flex flex-column justify-content-center align-items-center">
         <div className="d-flex w-100 justify-content-center align-items-center">
           <div className="auth-tabs alig-items-center">
-            <img src="/images/robot1.png" alt="Robot" className="-image" />
+            <img src="/Images/robot1.png" alt="Robot" className="-image" />
             <button
               className={`mt-3 mb-3 auth-tab ${
                 activeTab === "login" ? "active" : ""
@@ -109,7 +109,7 @@ const Auth = () => {
           {activeTab === "login" && (
             <div className="login-container scroll-animation">
               <img
-                src="/images/loginPeople.png"
+                src="/Images/loginPeople.png"
                 alt="Image 2"
                 className="img-container"
               />
