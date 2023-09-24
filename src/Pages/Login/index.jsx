@@ -19,27 +19,13 @@ const Auth = () => {
   const initialValues = {
     email: "",
     password: "",
-    gender: "",
     firstName: "",
-    lastName: "",
   };
 
   const [togglePassword, setTogglePassword] = useState(false);
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("E-Mail is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
-      ),
-    gender: Yup.string().required("Gender is required"),
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
-  });
-
-  const handleLoginSubmit = async (values) => {
+  const handleSubmit = async (values) => {
+    console.log("Login button clicked");
     try {
       const response = await axios.post(`${BASE_URL}/auth/login`, {
         email: values.email,
@@ -64,15 +50,11 @@ const Auth = () => {
   };
 
   const handleSignupSubmit = async (values) => {
+    console.log("Signup button clicked");
     try {
       const response = await axios.post(`${BASE_URL}/auth/signup`, values);
-
-      if (response.status === 200) {
         window.alert("Successfully Signed Up");
-        navigate("/login");
-      } else {
-        throw new Error("Signup failed");
-      }
+        setActiveTab("login");
     } catch (error) {
       window.alert(error.message || "An error occurred during SignUp");
     }
@@ -138,8 +120,8 @@ const Auth = () => {
                 </h1>
                 <Formik
                   initialValues={initialValues}
-                  validationSchema={validationSchema}
-                  onSubmit={handleLoginSubmit}
+                  // validationSchema={validationSchema}
+                  onSubmit={handleSubmit}
                 >
                   <Form>
                     <div className="form-container">
@@ -166,7 +148,7 @@ const Auth = () => {
                       <label htmlFor="password ">Password</label>
                       <div className="input-container">
                         <Field
-                          type={togglePassword ? "text" : "password"}
+                          type="password"
                           className="field-class"
                           placeholder="Enter password"
                           id="password"
@@ -197,7 +179,7 @@ const Auth = () => {
                       Privacy Policy.
                       <br className="span-priv" />
                       For more information, read about our privacy policy{" "}
-                      <span className="span-priv-link">here</span>
+                      <span className="span-priv-link"><Link to='/privacyPolicy'>here</Link></span>
                     </h1>
                   </Form>
                 </Formik>
@@ -219,7 +201,7 @@ const Auth = () => {
                 </h1>
                 <Formik
                   initialValues={initialValues}
-                  validationSchema={validationSchema}
+                  // validationSchema={validationSchema}
                   onSubmit={handleSignupSubmit}
                 >
                   <Form>
@@ -295,7 +277,7 @@ const Auth = () => {
                       </div>
                     </div>
 
-                    <button type="submit" to="/sidebar" className="submit-btn">
+                    <button type="submit" className="submit-btn">
                       Sign Up
                     </button>
                   </Form>
