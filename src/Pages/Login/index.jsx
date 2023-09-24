@@ -190,7 +190,7 @@ const Auth = () => {
           {activeTab === "signup" && (
             <div className="login-container scroll-animation">
               <img
-                src="/images/signUpPeople.jpg"
+                src="/Images/signUpPeople.jpg"
                 alt="Image 2"
                 className="img-fluid"
               />
