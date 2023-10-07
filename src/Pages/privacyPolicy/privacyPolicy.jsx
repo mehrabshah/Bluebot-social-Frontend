@@ -20,100 +20,105 @@ function PrivacyPolicy() {
         {/* First Div */}
         {currentPage === 1 && (
             <div>
-    <h1>PRIVACY NOTICE</h1>
-    <p>Last updated Aug 31, 2023</p>
+  <h1>Privacy Policy</h1>
+  <h2>Effective Date: August 31, 2023</h2>
 
-    <p>This privacy notice for Bluebot Social Media Company, doing business as Bluebot Social ("we," "us," or "our"),
-        describes how and why we might collect, store, use, and/or share ("process") your information when you use our
-        services ("Services"), such as when you:</p>
+  <h2>Introduction</h2>
+  <p>
+    Welcome to Bluebot Social Media Company. This Privacy Policy explains how we handle your personal information when you use our services. Please read this carefully to understand how your data is managed.
+  </p>
 
-    <ul>
-        <li>Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If
-            you do not agree with our policies and practices, please do not use our Services. If you still have any
-            questions or concerns, please contact us at <a href="mailto:legal@bluebotsocial.com">legal@bluebotsocial.com</a>.
-        </li>
-    </ul>
+  <h2>Definitions</h2>
+  <ul>
+    <li>Personal Data: Information that can identify an individual.</li>
+    <li>Usage Data: Automatically collected data related to service usage.</li>
+    <li>Cookies: Small data files stored on users' devices.</li>
+    <li>Data Controller: Entity determining the data processing purposes. For this Privacy Policy, we are the Data Controller.</li>
+  </ul>
 
-    <h2>SUMMARY OF KEY POINTS</h2>
-    <p>This summary provides key points from our privacy notice, but you can find out more details about any of these topics
-        by clicking the link following each key point or by using our table of contents below to find the section you are
-        looking for.</p>
+  <h2>Information Collection and Use</h2>
+  <p>We collect different types of information for various purposes:</p>
+  <ul>
+    <li>Personal Data: This includes email addresses, first and last names, social network authentication, mailing and billing addresses.</li>
+    <li>Usage Data: Automatically gathered information, such as IP addresses, browser type, page visits, and device identifiers.</li>
+  </ul>
 
-    <ul>
-        <li>What personal information do we process? When you visit, use, or navigate our Services, we may process
-            personal information depending on how you interact with us and the Services, the choices you make, and the
-            products and features you use. Learn more about personal information you disclose to us.</li>
-        <li>Do we process any sensitive personal information? We do not process sensitive personal information.</li>
-        <li>Do we receive any information from third parties? We may receive information from public databases, marketing
-            partners, social media platforms, and other outside sources. Learn more about information collected from other
-            sources.</li>
-        <li>How do we process your information? We process your information to provide, improve, and administer our
-            Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process
-            your information for other purposes with your consent. We process your information only when we have a valid
-            legal reason to do so. Learn more about how we process your information.</li>
-        <li>In what situations and with which parties do we share personal information? We may share information in
-            specific situations and with specific third parties. Learn more about when and with whom we share your
-            personal information.</li>
-        <li>What are your rights? Depending on where you are located geographically, the applicable privacy law may mean
-            you have certain rights regarding your personal information. Learn more about your privacy rights.</li>
-        <li>How do you exercise your rights? The easiest way to exercise your rights is by submitting a data subject
-            access request, or by contacting us. We will consider and act upon any request in accordance with applicable
-            data protection laws.</li>
-        <li>Want to learn more about what we do with any information we collect? Review the privacy notice in full.</li>
-    </ul>
+  <h2>Cookies and Tracking</h2>
+  <p>We use cookies and tracking technologies to enhance your experience. You can configure your browser to manage cookies.</p>
 
-    <h2>TABLE OF CONTENTS</h2>
-    <ol>
-        <li><a href="#section1">WHAT INFORMATION DO WE COLLECT?</a></li>
-        <li><a href="#section2">HOW DO WE PROCESS YOUR INFORMATION?</a></li>
-        <li><a href="#section3">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></li>
-        <li><a href="#section4">DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></li>
-        <li><a href="#section5">HOW DO WE HANDLE YOUR SOCIAL LOGINS?</a></li>
-        <li><a href="#section6">IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?</a></li>
-        <li><a href="#section7">HOW LONG DO WE KEEP YOUR INFORMATION?</a></li>
-        <li><a href="#section8">DO WE COLLECT INFORMATION FROM MINORS?</a></li>
-        <li><a href="#section9">WHAT ARE YOUR PRIVACY RIGHTS?</a></li>
-        <li><a href="#section10">CONTROLS FOR DO-NOT-TRACK FEATURES</a></li>
-        <li><a href="#section11">DO WE MAKE UPDATES TO THIS NOTICE?</a></li>
-        <li><a href="#section12">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></li>
-        <li><a href="#section13">HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></li>
-    </ol>
+  <h2>Use of Data</h2>
+  <p>We use your data for the following purposes:</p>
+  <ul>
+    <li>To provide and maintain our services.</li>
+    <li>To inform you about service changes.</li>
+    <li>To enable interactive features.</li>
+    <li>For customer support.</li>
+    <li>To improve our service.</li>
+    <li>To monitor service usage.</li>
+    <li>To support analytics and recommendation systems.</li>
+    <li>To detect and address technical issues.</li>
+    <li>To provide news and promotions.</li>
+  </ul>
+
+  <h2>Data Retention</h2>
+  <p>We retain your data as long as necessary, following legal obligations.</p>
+
+  <h2>Data Transfer</h2>
+  <p>Your data may be transferred to our systems or service providers located outside your jurisdiction.</p>
+
+  <h2>Disclosure of Data</h2>
+  <p>Your data may be disclosed:</p>
+  <ul>
+    <li>In business transactions, your data may be transferred, with notice.</li>
+    <li>In response to legal requests.</li>
+    <li>To comply with legal obligations.</li>
+    <li>To protect rights, property, safety, or against legal liability.</li>
+  </ul>
 </div>
 
         )}
 
         {/* Second Div */}
         {currentPage === 2 && (
-      <div>
-    <h2>1. WHAT INFORMATION DO WE COLLECT?</h2>
-    <p>Personal information you disclose to us</p>
-    <p><strong>In Short:</strong> We collect personal information that you provide to us.</p>
-    <p>We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
-    <p><strong>Sensitive Information:</strong> We do not process sensitive information.</p>
-    <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
-
-    <h2>2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
-    <p><strong>In Short:</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</p>
-    <p>We process your personal information for a variety of reasons, depending on how you interact with our Services, including:</p>
-
-    <h2>3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</h2>
-    <p><strong>In Short:</strong> We may share information in specific situations described in this section and/or with the following third parties.</p>
-    <p>We may need to share your personal information in the following situations:</p>
-    <ul>
-        <li><strong>Business Transfers:</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
-        <li><strong>Affiliates:</strong> We may share your information with our affiliates, in which case we will require those affiliates to honor this privacy notice. Affiliates include our parent company and any subsidiaries, joint venture partners, or other companies that we control or that are under common control with us.</li>
-        <li><strong>Business Partners:</strong> We may share your information with our business partners to offer you certain products, services, or promotions.</li>
-    </ul>
-
-    <h2>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>
-    <p><strong>In Short:</strong> We may use cookies and other tracking technologies to collect and store your information.</p>
-    <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.</p>
-
-    <h2>6. IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?</h2>
-    <p><strong>In Short:</strong> We may transfer, store, and process your information in countries other than your own.</p>
-    <p>Our servers are located in. If you are accessing our Services from outside, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see "WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?" above), in and other countries.</p>
-    <p>If you are a resident in the European Economic Area (EEA), United Kingdom (UK), or Switzerland, then these countries may not necessarily have data protection laws or other similar laws as comprehensive as those in your country. However, we will take all necessary measures to protect your personal information in accordance with this privacy notice and applicable law.</p>
-
+          <div>
+          <h2>Service Providers</h2>
+          <p>Third parties assist us in service delivery. They access your data solely for service-related tasks.</p>
+        
+          <h2>Analytics</h2>
+          <p>We use third-party providers like Google Analytics and Firebase to monitor and analyze service usage. You can find their privacy policies on their websites.</p>
+        
+          <h2>Remarketing</h2>
+          <p>We may use remarketing services for advertising on third-party websites. Cookies inform, optimize, and personalize these ads.</p>
+        
+          <h2>Customer Services</h2>
+          <p>We use Zendesk for customer support. Refer to their privacy policy for details.</p>
+        
+          <h2>Payments</h2>
+          <p>For payments, we use third-party processors (e.g., Apple and Stripe) that follow PCI-DSS standards.</p>
+        
+          <h2>Legal Basis for Processing</h2>
+          <p>We process data based on contract, legitimate interests, consent, or legal obligations.</p>
+        
+          <h2>Security</h2>
+          <p>While we employ security measures, no online data transmission is 100% secure.</p>
+        
+          <h2>Your Rights</h2>
+          <p>You have the right to correct, amend, or delete your data. Contact us for assistance.</p>
+        
+          <h2>Links to Other Sites</h2>
+          <p>Our service may contain links to external websites. Review their privacy policies when visiting.</p>
+        
+          <h2>Children's Privacy</h2>
+          <p>Our service is not intended for children under 13. We do not knowingly collect their data.</p>
+        
+          <h2>Security Vulnerabilities</h2>
+          <p>Report security vulnerabilities to security@bluebotsocial.com.</p>
+        
+          <h2>Changes to This Privacy Policy</h2>
+          <p>We may update this policy; changes will be posted here. Check periodically.</p>
+        
+          <h2>Contact Us</h2>
+          <p>If you have questions, contact us at care@bluebotsocial.com.</p>
         </div>
         
         )}
@@ -121,43 +126,86 @@ function PrivacyPolicy() {
         {/* Third Div */}
         {currentPage === 3 && (
             <div>
-  <h2>7. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
-<p><strong>In Short:</strong> We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law.</p>
-<p>We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements).</p>
-<p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
+  <h1>Terms of Service</h1>
+  <p>
+    These Terms of Service ("Terms") govern your use of the Bluebot Social website, community, and mobile application (collectively, the "Service") provided by Bluebot Social Media Company ("Bluebot Social," "we," "us," or "our"). By accessing or using the Service, you agree to comply with these Terms. If you do not agree with any part of these Terms, please refrain from using the Service.
+  </p>
 
-<h2>8. DO WE COLLECT INFORMATION FROM MINORS?</h2>
-<p><strong>In Short:</strong> We do not knowingly collect data from or market to children under 18 years of age.</p>
-<p>We do not knowingly solicit data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:legal@bluebotsocial.com">legal@bluebotsocial.com</a>.</p>
+  <h2>1. Subscriptions</h2>
+  <p>
+    Certain features of the Service may require a subscription ("Subscription"). Subscriptions are billed on a monthly or annual basis, depending on your chosen plan. Your Subscription will automatically renew at the end of each billing cycle unless you or we cancel it. We may revise Subscription terms and pricing with notice before your renewal. If you do not accept the changes, you may cancel your Subscription.
+  </p>
 
-<h2>9. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
-<p><strong>In Short:</strong> You may review, change, or terminate your account at any time.</p>
-<p><strong>Withdrawing your consent:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "HOW CAN YOU CONTACT US ABOUT THIS NOTICE?" below.</p>
-<p>However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
-<p><strong>Account Information</strong></p>
-<p>If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
-<p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.</p>
+  <h2>2. Free Trial</h2>
+  <p>
+    We may offer a free trial of our Service at our discretion. If you provide billing information during the trial, you will be charged when the trial ends. We reserve the right to modify or cancel the free trial offer at any time without notice.
+  </p>
 
-<h2>10. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
-<p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
+  <h2>3. Fee Changes</h2>
+  <p>
+    We may change Subscription fees, providing you with prior notice. Your continued use of the Service after fee changes take effect indicates your acceptance of the new fees.
+  </p>
 
-<h2>11. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
-<p><strong>In Short:</strong> Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
-<p>We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
+  <h2>4. Refunds</h2>
+  <p>
+    Refund requests for Subscriptions will be considered on a case-by-case basis at our sole discretion.
+  </p>
 
-<h2>12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
-<p>If you have questions or comments about this notice, you may email us at <a href="mailto:legal@bluebotsocial.com">legal@bluebotsocial.com</a> or contact us by post at:</p>
-<address>
-    Bluebot Social Media Company
-    General Delivery
-    C/O Bluebot Social Media Company
-    Scottsdale, AZ 85258
-    United States
-</address>
+  <h2>5. Content</h2>
+  <p>
+    You are responsible for the content you post on the Service. By posting content, you grant us the right to use, modify, and distribute it within the Service. You must own the content or have the necessary rights to use it.
+    We reserve the right to remove or block content that violates these terms or is deemed inappropriate.
+  </p>
 
-<h2>13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
-<p>Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please fill out and submit a data subject access request.</p>
+  <h2>6. Community</h2>
+  <p>
+    Our Service includes a community feature. You are responsible for the content you post in the community. We do not control user-generated content but reserve the right to review and remove content at our discretion. We may also restrict or terminate access to the community without notice.
+  </p>
 
+  <h2>7. Accounts</h2>
+  <p>
+    You must provide accurate information when creating an account. Safeguard your password and notify us of any security breaches or unauthorized account use.
+  </p>
+
+  <h2>8. Intellectual Property</h2>
+  <p>
+    All content on the Service is our property and is protected by intellectual property laws. You may use the content for personal, non-commercial purposes, but any other use is prohibited.
+  </p>
+
+  <h2>9. Links to Other Websites</h2>
+  <p>
+    The Service may contain links to third-party websites. We are not responsible for the content or practices of these websites and recommend reviewing their terms and policies.
+  </p>
+
+  <h2>10. Termination</h2>
+  <p>
+    We may terminate or suspend your access to the Service for any reason, with or without notice. Upon termination, your rights to use the Service cease.
+  </p>
+
+  <h2>11. Indemnification</h2>
+  <p>
+    You agree to indemnify and hold us harmless from any claims, losses, or damages resulting from your use of the Service or violations of these Terms.
+  </p>
+
+  <h2>12. Limitation of Liability</h2>
+  <p>
+    We, including our directors, employees, and partners, will not be liable for any direct, indirect, or incidental damages arising from your use of the Service.
+  </p>
+
+  <h2>13. Governing Law</h2>
+  <p>
+    These Terms are governed by the laws of the Province of British Columbia and the laws of Canada, as applicable.
+  </p>
+
+  <h2>14. Changes</h2>
+  <p>
+    We may modify these Terms at our discretion. We will provide notice of material changes, and your continued use of the Service after such changes constitutes your acceptance of them.
+  </p>
+
+  <h2>15. Contact Us</h2>
+  <p>
+    If you have questions about these Terms, please contact us at care@bluebotsocial.com.
+  </p>
 </div>
 
         )}
