@@ -147,9 +147,24 @@ export default function SchedulePostModal() {
 
   const handleImage = (e) => {
     const file = e.target.files[0];
-    setImage(URL.createObjectURL(file));
+    console.log(file)
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        // The result contains the base64 image data
+        const base64ImageData = reader.result;
+        setImage(base64ImageData);
+        setPreviewImage(base64ImageData)
+      };
+
+      // Read the file as a data URL (base64)
+      reader.readAsDataURL(file);
+    }
+
+    // setImage(URL.createObjectURL(file));
     // setPostStatus("MEDIA")
-    setPreviewImage(URL.createObjectURL(file))
   };
 
   const handleSubmit = () => {
@@ -202,7 +217,7 @@ export default function SchedulePostModal() {
                       src="./images/pinterest.png"
                       className={`img-fluid ms-2 ${selectedLogo === 'PINTEREST' ? 'selected' : ''}`}
                       alt="pinterestimg"
-                      onClick={() => (pinterestLoginStatus ? handleLogoClick('PINTEREST') : null)}
+                      onClick={() => (pinterestLoginStatus ? handleLogoClick('PINTEREST') : alert("Please Sign in to Pinterest"))}
                     />
                     <img
                       src="./images/image8.png"
