@@ -18,9 +18,9 @@ const ContentBox = () => {
 
   // Linkedin Login
 
-  const handleLogin = (socialPlatform) => {
+  const handleLogin = async (socialPlatform) => {
 
-    switch (socialPlatform){
+    switch (socialPlatform) {
       case 'LinkedIn':
         window.location.href = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&scope=profile%20email%20openid%20w_member_social&redirect_uri=${redirectUri}`;
         localStorage.setItem('socialPlatform', 'LinkedIn');
@@ -30,8 +30,20 @@ const ContentBox = () => {
         localStorage.setItem('socialPlatform', 'Pinterest');
         break;
       case 'Tiktok':
-        window.location.href = `https://www.tiktok.com/v2/auth/authorize/?client_key=${tiktokClientKey}&response_type=code&scope=user.info.basic&redirect_uri=${redirectUri}&state=<state>`;
+        window.location.href = `https://www.tiktok.com/v2/auth/authorize/?client_key=${tiktokClientKey}&response_type=code&scope=user.info.basic&redirect_uri=https://bluebotsocial.com/&state=<state>`;
         localStorage.setItem('socialPlatform', 'Tiktok');
+        break;
+      case 'MyBusiness':
+        const urlResponse = await axios.get(`${BASE_URL}/auth/google/get-auth-url`);
+        window.location.href = urlResponse.data.authUrl;
+        localStorage.setItem('socialPlatform', 'MyBusiness');
+        break;
+      case 'Twitter':
+        // window.location.href = await axios.get(`${BASE_URL}/auth/twitter/get-token`);
+        const res = await axios.get(`${BASE_URL}/auth/twitter/get-auth-url`);
+        window.location.href = res.data.authUrl;
+
+        localStorage.setItem('socialPlatform', 'Twitter');
         break;
       default:
         console.log("Not any social platform")
@@ -42,6 +54,8 @@ const ContentBox = () => {
   const [linkedInImageURL, setLinkedInImageURL] = useState('/images/image8.png');
   const [pinterestImageURL, setPinterestImageURL] = useState('/images/image2.png');
   const [tiktokImageURL, setTiktokImageURL] = useState('/images/image4.png');
+  const [twitterImageURL, setTwitterImageURL] = useState('/images/image7.png');
+  const [myBusinessImageURL, setMyBusinessImageURL] = useState('/images/image5.png');
   const [linkedInBorderRadius, setlinkedBorderRadius] = useState('0px');
 
   const urlSearchParams = new URLSearchParams(window.location.search)
@@ -54,19 +68,24 @@ const ContentBox = () => {
     // Get the profile image from local storage if logged in already
     const linkedInProfileImage = localStorage.getItem("linkedInProfileImage");
     const pinterestProfileImage = localStorage.getItem("pinterestProfileImage");
-    const tiktokProfileImage = localStorage.getItem("tittokProfileImage");
+    const tiktokProfileImage = localStorage.getItem("tiktokProfileImage");
+    const twitterProfileImage = localStorage.getItem("twitterProfileImage");
+    const myBusinessProfileImage = localStorage.getItem("myBusinessProfileImage");
 
-    if (linkedInProfileImage && linkedInProfileImage !== "undefined")
-    {
+    if (linkedInProfileImage && linkedInProfileImage !== "undefined") {
       setLinkedInImageURL(linkedInProfileImage);
     }
-    if (pinterestProfileImage && pinterestProfileImage !== "undefined")
-    {
+    if (pinterestProfileImage && pinterestProfileImage !== "undefined") {
       setPinterestImageURL(pinterestProfileImage);
     }
-    if (tiktokProfileImage && tiktokProfileImage !== "undefined")
-    {
+    if (tiktokProfileImage && tiktokProfileImage !== "undefined") {
       setTiktokImageURL(tiktokProfileImage);
+    }
+    if (twitterProfileImage && twitterProfileImage !== "undefined") {
+      setTwitterImageURL(twitterProfileImage);
+    }
+    if (myBusinessProfileImage && myBusinessProfileImage !== "undefined") {
+      setMyBusinessImageURL(myBusinessProfileImage);
     }
 
     if (code) {
@@ -87,6 +106,12 @@ const ContentBox = () => {
             case "Tiktok":
               var response = await axios.post(`${BASE_URL}/auth/linkedin/create-tiktok-user`, requestBody);
               break;
+            case "Twitter":
+              var response = await axios.post(`${BASE_URL}/auth/twitter/create-twitter-user`, requestBody);
+              break;
+            case "MyBusiness":
+              var response = await axios.post(`${BASE_URL}/auth/google/create-google-user`, requestBody);
+              break;
             default:
               console.log("No Social Platform in Local Storage")
           }
@@ -98,14 +123,22 @@ const ContentBox = () => {
               localStorage.setItem("linkedInProfileImage", res.profilePicture);
               setLinkedInImageURL(res.profilePicture)
               break;
-              case "Pinterest":
+            case "Pinterest":
               localStorage.setItem("pinterestProfileImage", res.profilePicture);
               setPinterestImageURL(res.profilePicture)
               localStorage.setItem("pinterestLoginStatus", true)
               break;
-              case "Tiktok":
+            case "Tiktok":
               localStorage.setItem("tiktokProfileImage", res.profilePicture);
               console.log("Tiktok Selected")
+              break;
+            case "Twitter":
+              localStorage.setItem("twitterProfileImage", res.profilePicture);
+              console.log("Twitter Selected")
+              break;
+            case "MyBusiness":
+              localStorage.setItem("myBusinessProfileImage", res.profilePicture);
+              console.log("MyBusiness Selected")
               break;
             default:
               console.log("No Social Platform in Local Storage")
@@ -305,7 +338,7 @@ const ContentBox = () => {
           )}
         </div>
         <div className="image-tile" onClick={() => handleLogin("Pinterest")}>
-          <img src={pinterestImageURL} style={{borderRadius:'4rem'}} alt="Image2" className="content-image" />
+          <img src={pinterestImageURL} style={{ borderRadius: '4rem' }} alt="Image2" className="content-image" />
           <p className="image-description">Pinterest</p>
         </div>
 
@@ -319,82 +352,22 @@ const ContentBox = () => {
           <p className="image-description">TikTok</p>
         </div>
 
-        <div className="image-tile">
-          <img src="/images/image5.png" alt="Image5" className="content-image" />
+        <div className="image-tile" onClick={()=> handleLogin("MyBusiness")}>
+          <img src={myBusinessImageURL} alt="Image5" className="content-image" />
           <p className="image-description">Google</p>
         </div>
 
         <div className="image-tile">
           <img src="/images/insta.png" alt="Image6" className="content-image" />
-          <p className="image-description">instragram</p>
+          <p className="image-description">Instragram</p>
         </div>
 
-        <div className="image-tile">
-          <img src="/images/image7.png" alt="Image 2" className="content-image img-fluid" onClick={(e) => setIsTwitter(true)} />
-          <p className="image-description">Twiter</p>
-          {twitterToken && (
-            <>
-              <button onClick={(e) => setTweet(true)}>Post Now</button>
-
-              {tweet && (
-                <div
-                  style={{
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    padding: '20px',
-                    backgroundColor: 'white',
-                    border: '1px solid black',
-                    zIndex: 1000,
-                  }}
-                >
-                  <input type="text" placeholder="Enter text" onChange={(e) => setTwitterText(e.target.value)} />
-                  <button onClick={handleTweetSubmit}>Post</button>
-                </div>
-              )}
-            </>
-          )}
-          {isTwitter && (
-            <>
-              <div
-                style={{
-                  position: 'fixed',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  padding: '20px',
-                  backgroundColor: 'white',
-                  border: '1px solid gray',
-                  borderRadius: '12px',
-                  zIndex: 1000,
-                }}
-              >
-                <div className="dialog-box d-flex justify-content-between flex-column align-items-center">
-                  <h2>
-                    Generate you api keys from the following link and enter them here
-                  </h2>
-                  <input
-                    type="text"
-                    placeholder="API key"
-                    value={consumerKey}
-                    onChange={(e) => setConsumerKey(e.target.value)}
-                  />
-                  <input
-                    type="text"
-                    placeholder="API secret Key"
-                    value={consumerSecret}
-                    onChange={(e) => setConsumerSecret(e.target.value)}
-                  />
-                  <button className='custom-buttonn twitter-api-button' onClick={initiateAuthTwitter}>Log In Now</button>
-                  <button className='custom-buttonn twitter-api-button' onClick={(e) => setIsTwitter(false)}>Close</button>
-                </div>
-              </div>
-            </>
-          )}
+        <div className="image-tile" onClick={() => handleLogin("Twitter")}>
+          <img src={twitterImageURL} alt="Image 2" className="content-image img-fluid" />
+          <p className="image-description">Twitter</p>
         </div>
         <div className="image-tile" onClick={() => handleLogin("LinkedIn")}>
-          <img src={linkedInImageURL}  style={{borderRadius: linkedInBorderRadius}} alt="Image8" className="content-image1 mb-2" />
+          <img src={linkedInImageURL} style={{ borderRadius: linkedInBorderRadius }} alt="Image8" className="content-image1 mb-2" />
           <p className="image-description">LinkedIn</p>
         </div>
       </div>

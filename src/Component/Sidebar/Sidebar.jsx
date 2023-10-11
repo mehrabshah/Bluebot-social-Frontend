@@ -49,8 +49,8 @@ const Sidebar = () => {
             <span>+</span> Add space
           </button>
 
-          <div className="">
-            <FaSearch className="" />
+          <div className="search-container">
+            <FaSearch className="search-icon" />
             <input type="text" className="search-input-sidebar" placeholder="Search" />
           </div>
 

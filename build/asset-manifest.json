@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.03cac022.css",
-    "main.js": "/static/js/main.6ea19e2a.js",
+    "main.css": "/static/css/main.4d16792b.css",
+    "main.js": "/static/js/main.07f05711.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
     "static/media/VremenaGrotesk.woff": "/static/media/VremenaGrotesk.d5943581aa873e9d1a40.woff",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
-    "main.03cac022.css.map": "/static/css/main.03cac022.css.map",
-    "main.6ea19e2a.js.map": "/static/js/main.6ea19e2a.js.map",
+    "main.4d16792b.css.map": "/static/css/main.4d16792b.css.map",
+    "main.07f05711.js.map": "/static/js/main.07f05711.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.03cac022.css",
-    "static/js/main.6ea19e2a.js"
+    "static/css/main.4d16792b.css",
+    "static/js/main.07f05711.js"
   ]
 }
