@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import BASE_URL from '../../../services/api';
 import './WorkspaceContentBox.css';
-
+const BaseUrl=""
 function WorkspaceContentBox() {
   const [token, setToken] = useState('');
   const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(localStorage.getItem('UserId'));
@@ -26,7 +27,7 @@ function WorkspaceContentBox() {
   // useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseAccount = await axios.post('http://localhost:8000/auth/get-account', { token });
+        const responseAccount = await axios.post(`${BaseUrl}/auth/get-account`, { token });
         const data = responseAccount.data;
         console.log(data);
         setAccounts(data);
@@ -58,7 +59,7 @@ function WorkspaceContentBox() {
     const fetchUserData = async () => {
       try {
         console.log(localStorage.getItem('UserId'));
-        const response = await axios.post('http://localhost:8000/auth/get-data', { userId: localStorage.getItem('UserId') });
+        const response = await axios.post(`${BaseUrl}/auth/get-data`, { userId: localStorage.getItem('UserId') });
         const profileImageURL = response.data.profileImageURL;
         const fb_id = response.data.id;
         setProfileImageURL(profileImageURL);
@@ -74,7 +75,7 @@ function WorkspaceContentBox() {
     fetchUserData();
 
     axios
-      .get(`http://localhost:8000/auth/twitter/getAccessToken/${isAuthenticatedUser}`)
+      .get(`${BaseUrl}/auth/twitter/getAccessToken/${isAuthenticatedUser}`)
       .then((response) => {
         const accessTokenFromServer = response.data.twitterData.accessToken;
         const consumerKey = response.data.twitterData.consumerKey;
@@ -93,7 +94,7 @@ function WorkspaceContentBox() {
 
   const handleTweetSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/auth/twitter/create-tweet', { text: twitterText, tokenTwitter: twitterToken });
+      const response = await axios.post(`${BaseUrl}/auth/twitter/create-tweet`, { text: twitterText, tokenTwitter: twitterToken });
 
       const data = response.data;
       console.log('Tweet created:', data);
@@ -104,7 +105,7 @@ function WorkspaceContentBox() {
 
   const initiateAuthTwitter = async () => {
     try {
-      const apiResponse = await axios.post('http://localhost:8000/auth/twitter/request-token', {
+      const apiResponse = await axios.post(`${BaseUrl}/auth/twitter/request-token`, {
         userId: localStorage.getItem('UserId'),
         consumerKey,
         consumerSecret,
@@ -161,7 +162,7 @@ function WorkspaceContentBox() {
 
   const exchangeForLongLivedToken = async (shortLivedToken, userID) => {
     try {
-      const response = await axios.post('http://localhost:8000/auth/save-token', { token: shortLivedToken, fb_id: userID, userId: isAuthenticatedUser });
+      const response = await axios.post(`${BaseUrl}/auth/save-token`, { token: shortLivedToken, fb_id: userID, userId: isAuthenticatedUser });
       const longLivedToken = response.data.message;
       setToken(longLivedToken);
       alert('Token generated and saved successfully');
